@@ -20,4 +20,20 @@ public class Gestion {
         monParc.ajouterScooter(s1);
         System.out.println("Scooter ajouté avec succès.");
     }
+
+    public void traiterLocation() {
+
+    }
+
+    public void traiterRetour() {
+
+    }
+
+    public void afficherEtatScooter() {
+
+    }
+
+    public void afficherParc() {
+        
+    }
 }
