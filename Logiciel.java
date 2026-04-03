@@ -18,7 +18,7 @@ public class Logiciel {
         System.out.print("Votre choix : ");
     }
 
-    public void choixmenu(){
+    public void lancer(){
         Scanner scanner = new Scanner(System.in);
         int choix;
         do{
@@ -26,29 +26,33 @@ public class Logiciel {
             int choix = scanner.nextInt();
             scanner.nextLine();
             switch(choix){
-            case 1: 
-                System.out.println("Donner l'ID du scooter à louer :");
-                gestionnaire.TraiterLocation(scanner.nextLine());
-                break;
-            case 2:
-                System.out.println("Donner l'ID du scooter à retourner :")
-                gestionnaire.traiterRetour(scanner.nextLine());
-                break;
-            case 3:
-                System.out.println("Donner l'ID du scooter :");
-                gestionnaire.afficherEtatScooter(scanner.nextLine);
-                break;
-            case 4:
-                gestionnaire.afficherParc();
-            case 5:
-                gestionnaire.saisirParc();
-            case 6:
-                System.out.println("Fermeture du programme !");
+                case 1: 
+                    System.out.println("Donner l'ID du scooter à louer :");
+                    gestionnaire.TraiterLocation(scanner.nextLine());
+                    break;
+                case 2:
+                    System.out.println("Donner l'ID du scooter à retourner :")
+                    gestionnaire.traiterRetour(scanner.nextLine());
+                    break;
+                case 3:
+                    System.out.println("Donner l'ID du scooter :");
+                    gestionnaire.afficherEtatScooter(scanner.nextLine());
+                    break;
+                case 4:
+                    gestionnaire.afficherParc();
+                case 5:
+                    gestionnaire.saisirParc();
+                case 6:
+                    System.out.println("Fermeture du programme !");
             
-            
+            }
+        }while(choix != 6){
+            scanner.close();
         }
-    
-
     }
-    
+
+    public static void main(String[] args){
+        Logiciel appl = new Logiciel();
+        appl.lancer();
+    }
 }
