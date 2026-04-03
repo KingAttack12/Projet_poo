@@ -2,7 +2,7 @@ public class Client {
     private String nom;
     private String prenom;
     private int id_client;
-    private int telephone;
+    private String telephone;
     private String e_mail;
     
     // Associations
@@ -16,10 +16,11 @@ public class Client {
     }
 
     public String getInfosClient() {
-        return "Client N°" + id_client + " : " + nom + " " + prenom;
+        return "Client N°" + id_client + " : " + nom + " " + prenom; 
+
     }
 
-    public void modifierContact(int tel, String email) {
+    public void modifierContact(String tel, String email) {
         this.telephone = tel;
         this.e_mail = email;
     }
