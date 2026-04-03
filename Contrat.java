@@ -14,12 +14,13 @@ public class Contrat {
     private Scooter scooter;
     private Tarification tarification;
 
-    public Contrat(String idContrat, Client client, Scooter scooter, Tarification tarif) {
+    public Contrat(String idContrat, Client client, Scooter scooter, Tarification tarif, Date dateFinReelle) {
         this.idContrat = idContrat;
         this.client = client;
         this.scooter = scooter;
         this.tarification = tarif;
         this.dateDebut = new Date(); // Date du jour
+        this.dateFinReelle = new Date();
     }
 
     public double calculerPrixEstime() {
@@ -49,6 +50,6 @@ public class Contrat {
     }
 
     public String editerFacture() {
-        return "Facture pour le contrat " + idContrat + " - Montant : " + montantTotal + "€";
+        return "Facture pour le contrat " + idContrat + " - Montant : " + montantTotal + "€" + "Pour" + client + "Date de fin réelle" + dateFinReelle;
     }
 }
