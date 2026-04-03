@@ -9,17 +9,19 @@ public class Client {
     private Login login;
     private HabitudeClient habitude;
 
-    public Client(String nom, String prenom, int id_client, String telephone, String e_mail) {
+    public Client(String nom, String prenom, int id_client, String telephone, String e_mail, Login login, HabitudeClient habitude) {
         this.nom = nom;
         this.prenom = prenom;
         this.id_client = id_client;
         this.telephone = telephone;
         this.e_mail = e_mail;
+        this.login = login;
+        this.habitude = habitude;
 
     }
 
     public String getInfosClient() {
-        return "Client N°" + id_client + " : " + nom + " " + prenom + " " + telephone + " " + e_mail;
+        return "Client N°" + id_client + " : " + nom + " " + prenom + " " + telephone + " " + e_mail + " " + habitude + " " + login;
     }
 
     public void modifierContact(String tel, String email) {
