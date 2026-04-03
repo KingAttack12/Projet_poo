@@ -17,4 +17,5 @@ public class Logiciel {
         System.out.println("6. Quitter le programme");
         System.out.print("Votre choix : ");
     }
+    
 }
