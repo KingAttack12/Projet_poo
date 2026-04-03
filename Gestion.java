@@ -22,18 +22,18 @@ public class Gestion {
     }
 
     public void traiterLocation() {
-
+        // on créer d'un contrat (de la classe Contrat)
     }
 
     public void traiterRetour() {
-
+        // on cloture le contrat (de la classe Contrat)
     }
 
     public void afficherEtatScooter() {
-
+        // on affiche le statut du parc (de la classe Parc)
     }
 
     public void afficherParc() {
-        
+        // on affiche la liste des scooters disponible ou non 
     }
 }
