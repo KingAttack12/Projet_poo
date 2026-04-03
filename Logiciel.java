@@ -17,5 +17,21 @@ public class Logiciel {
         System.out.println("6. Quitter le programme");
         System.out.print("Votre choix : ");
     }
+
+    public void choixmenu(){
+        Scanner scanner = new Scanner(System.in);
+        int choix;
+        do{
+            afficherMenu();
+            int choix = scanner.nextInt();
+            case 1: 
+                System.out.println("Donner l'ID du scooter à louer :");
+                String reponse = scanner.nextLine();
+                Gestion.traiterLocation();
+                break;
+        }
+    
+
+    }
     
 }
