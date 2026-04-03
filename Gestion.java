@@ -20,12 +20,4 @@ public class Gestion {
         monParc.ajouterScooter(s1);
         System.out.println("Scooter ajouté avec succès.");
     }
-    public void TraiterLocation (){
-        //exemple
-        Client client1 = new Client("Fisson", "Sylvain", 001);
-        Scooter scoot1 = s1.Parc();
-        Tarification tarif1 = new Tarification(10);
-        Contrat C1 = new Contrat("C001", client1, scoot1, tarif1);
-    }
-
 }

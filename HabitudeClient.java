@@ -4,7 +4,7 @@ public class HabitudeClient {
     private String categorieClient;
 
     public void incrementerLocations() {
-        this.nbLocationsTotales++;
+        this.nbLocationsTotales++; // on regarde 
     }
 
     public void actualiserCategorie() {
