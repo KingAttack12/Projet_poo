@@ -24,11 +24,28 @@ public class Logiciel {
         do{
             afficherMenu();
             int choix = scanner.nextInt();
+            scanner.nextLine();
+            switch(choix){
             case 1: 
                 System.out.println("Donner l'ID du scooter à louer :");
-                String reponse = scanner.nextLine();
-                Gestion.traiterLocation();
+                gestionnaire.TraiterLocation(scanner.nextLine());
                 break;
+            case 2:
+                System.out.println("Donner l'ID du scooter à retourner :")
+                gestionnaire.traiterRetour(scanner.nextLine());
+                break;
+            case 3:
+                System.out.println("Donner l'ID du scooter :");
+                gestionnaire.afficherEtatScooter(scanner.nextLine);
+                break;
+            case 4:
+                gestionnaire.afficherParc();
+            case 5:
+                gestionnaire.saisirParc();
+            case 6:
+                System.out.println("Fermeture du programme !");
+            
+            
         }
     
 
