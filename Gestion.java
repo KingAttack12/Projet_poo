@@ -21,10 +21,6 @@ public class Gestion {
         System.out.println("Scooter ajouté avec succès.");
     }
 
-    public void traiterLocation() {
-        // on créer d'un contrat (de la classe Contrat)
-    }
-
     public void traiterRetour() {
         // on cloture le contrat (de la classe Contrat)
     }
