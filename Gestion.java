@@ -25,8 +25,16 @@ public class Gestion {
         // on cloture le contrat (de la classe Contrat)
     }
 
-    public void afficherEtatScooter() {
+    public void afficherEtatScooter(String id_scooter) {
         // on affiche le statut du parc (de la classe Parc)
+        Scooter s = monParc.chercherScooter(id_scooter);
+        if(s != null){
+            String etat = s.isEstDisponible() ? "Disponible" : "InDisponible";
+            System.out.println("Le scooter d'identification : "+ s.getId()+" a parcouru"+ s.getKilometrage()+ "km et a pour etat :"+ etat);
+        }
+        else {
+            System.out.println("Scooter introuvable")        
+        }
     }
 
     public void afficherParc() {
