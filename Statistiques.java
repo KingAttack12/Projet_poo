@@ -8,7 +8,4 @@ public class Statistiques extends Gestion {
         return 0.0;
     }
 
-    public int NombresLocationsMois() {
-        return "Il y a eu" + listeContrats.size() + "contrats ce mois-ci";
-    }
 }
