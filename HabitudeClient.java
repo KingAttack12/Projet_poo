@@ -8,7 +8,7 @@ public class HabitudeClient {
     }
 
     public void actualiserCategorie() {
-        if (nbLocationsTotales > 10) this.categorieClient = "VIP";
+        if (nbLocationsTotales > 10 || totalDepense > 1000) this.categorieClient = "VIP";
         // si le nombre de locations du client est supérieur à dix, alors le client est catégorisé comme VIP
         else this.categorieClient = "Standard";
         // sinon, il est considéré comme un client standard
