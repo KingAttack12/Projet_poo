@@ -1,8 +1,9 @@
-public class Login{
-	private string nomUtilisateur;
-	private string mot_de_passe;
-	public void Login(string id, string mdp){
-		this.nomUtilisation = id;
-		this.mot_de_passe = mdp;
-	}
+public class Login {
+    private String nomUtilisateur;
+    private String mot_de_passe;
+    
+    public Login(String id, String mdp) {
+        this.nomUtilisateur = id;
+        this.mot_de_passe = mdp;
+    }
 }
