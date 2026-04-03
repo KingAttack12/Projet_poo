@@ -39,5 +39,5 @@ public class Gestion {
         Tarification tarif1 = new Tarification(10);
         Contrat C1 = new Contrat("C001", client1, scoot1, tarif1);
     }
-
+    
 }
