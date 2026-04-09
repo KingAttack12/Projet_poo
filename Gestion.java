@@ -23,11 +23,12 @@ public class Gestion {
     }
 
     //Point 2
-    public void traiterRetour(String id_Scooter) {
+    public void traiterRetour(String id_Scooter, double kmParcourus) {
         Scooter s = monParc.chercherScooter(id_Scooter);
         if (s != null && !s.isEstDisponible()) {
-            s.retour();
+            s.retour(kmParcourus);
             System.out.println("Le scooter " + id_Scooter + " a été retourné. Il est de nouveau disponible.");
+            System.out.println("Son nouveau kilométrage est de : " + s.getKilometrage() + " km.");
         } else {
             System.out.println("Ce scooter n'est pas en cours de location.");
         }
@@ -39,7 +40,7 @@ public class Gestion {
         Scooter s = monParc.chercherScooter(id_scooter);
         if(s != null){
             String etat = s.isEstDisponible() ? "Disponible" : "InDisponible";
-            System.out.println("Le scooter d'identification : "+ s.getId()+" a parcouru"+ s.getKilometrage()+ "km et a pour etat :"+ etat);
+            System.out.println("Le scooter d'identification : " + s.getId() + " a parcouru " + s.getKilometrage() + " km et a pour état : " + etat);
         }
         else {
             System.out.println("Scooter introuvable");       
@@ -55,7 +56,7 @@ public class Gestion {
     }
 
     //Point 1
-    public void TraiterLocation (String id_scooter){
+    public void traiterLocation (String id_scooter){
         Scooter s = monParc.chercherScooter(id_scooter);
             if(s != null && s.isEstDisponible()){
                 s.louer();
@@ -63,6 +64,10 @@ public class Gestion {
             }else{
                 System.out.println("Le scooter est introuvable ou déja en location");
             }
+    }
+
+    public Parc getMonParc() {
+        return monParc;
     }
     
 }
