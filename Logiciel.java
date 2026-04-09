@@ -31,12 +31,8 @@ public class Logiciel {
                     gestionnaire.traiterLocation(scanner.nextLine());
                     break;
                 case 2:
-                    System.out.println("Donner l'ID du scooter à retourner :");
-                    String idRetour = scanner.nextLine();
-                    System.out.println("Combien de kilomètres a-t-il parcouru pendant la location ? :");
-                    double kmFaits = scanner.nextDouble();
-                    scanner.nextLine();
-                    gestionnaire.traiterRetour(idRetour, kmFaits);
+                    System.out.println("Donner l'ID du scooter à retourner :")
+                    gestionnaire.traiterRetour(scanner.nextLine());
                     break;
                 case 3:
                     System.out.println("Donner l'ID du scooter :");
