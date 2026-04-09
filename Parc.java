@@ -22,4 +22,8 @@ public class Parc {
         }
         return null; // Scooter non trouvé
     }
+
+    public List<Scooter> getListeScooters() {
+        return listeScooters;
+    }
 }

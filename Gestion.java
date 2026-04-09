@@ -44,7 +44,10 @@ public class Gestion {
     }
 
     public void afficherParc() {
-        
+        System.out.println("--- État du Parc ---");
+        for (Scooter s : monParc.getListeScooters()) {
+            afficherEtatScooter(s.getId());
+        }
     }
     public void TraiterLocation (){
         //exemple
