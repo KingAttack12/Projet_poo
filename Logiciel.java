@@ -40,8 +40,10 @@ public class Logiciel {
                     break;
                 case 4:
                     gestionnaire.afficherParc();
+                    break;
                 case 5:
                     gestionnaire.saisirParc();
+                    break;
                 case 6:
                     System.out.println("Fermeture du programme !");
             
