@@ -50,6 +50,10 @@ public class Logiciel {
                     break;
                 case 6:
                     System.out.println("Fermeture du programme !");
+                    break;
+                default:
+                    System.out.println("Choix invalide, veuillez réessayer.");
+                    break;
             
             }
         }while(choix != 6);

@@ -11,15 +11,27 @@ public class Gestion {
         this.monParc = new Parc();
         this.listeClients = new ArrayList<>();
         this.listeContrats = new ArrayList<>();
+        initialiserParc();
+    }
+
+    private void initialiserParc() {
+        if (monParc.chercherScooter("S001") == null) {
+            Modele mod = new Modele("Yamaha", "100ch", "Tmax", "Europe");
+            Scooter s1 = new Scooter("S001", 1500.5, mod);
+            monParc.ajouterScooter(s1);
+        }
     }
 
     // Point 5
     public void saisirParc() {
-        // Exemple
-        Modele mod = new Modele("Yamaha", "100ch", "Tmax", "Europe");
-        Scooter s1 = new Scooter("S001", 1500.5, mod);
-        monParc.ajouterScooter(s1);
-        System.out.println("Scooter ajouté avec succès.");
+        if (monParc.chercherScooter("S001") == null) {
+            Modele mod = new Modele("Yamaha", "100ch", "Tmax", "Europe");
+            Scooter s1 = new Scooter("S001", 1500.5, mod);
+            monParc.ajouterScooter(s1);
+            System.out.println("Scooter ajouté avec succès.");
+        } else {
+            System.out.println("Le parc est déjà initialisé. Aucun nouveau scooter n'est ajouté.");
+        }
     }
 
     //Point 2
@@ -39,7 +51,7 @@ public class Gestion {
         // on affiche le statut du parc (de la classe Parc)
         Scooter s = monParc.chercherScooter(id_scooter);
         if(s != null){
-            String etat = s.isEstDisponible() ? "Disponible" : "InDisponible";
+            String etat = s.isEstDisponible() ? "Disponible" : "Indisponible";
             System.out.println("Le scooter d'identification : " + s.getId() + " a parcouru " + s.getKilometrage() + " km et a pour état : " + etat);
         }
         else {
