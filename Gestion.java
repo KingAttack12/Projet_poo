@@ -22,7 +22,13 @@ public class Gestion {
     }
 
     public void traiterRetour() {
-        // on cloture le contrat (de la classe Contrat)
+        Scooter s = monParc.chercherScooter(String idScooter);
+        if (s != null && !s.isEstDisponible()) {
+            s.retour();
+            System.out.println("Le scooter " + idScooter + " a été retourné. Il est de nouveau disponible.");
+        } else {
+            System.out.println("Ce scooter n'est pas en cours de location.");
+        }
     }
 
     public void afficherEtatScooter(String id_scooter) {
