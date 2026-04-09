@@ -21,11 +21,11 @@ public class Gestion {
         System.out.println("Scooter ajouté avec succès.");
     }
 
-    public void traiterRetour() {
-        Scooter s = monParc.chercherScooter(String idScooter);
+    public void traiterRetour(String id_Scooter) {
+        Scooter s = monParc.chercherScooter(id_Scooter);
         if (s != null && !s.isEstDisponible()) {
             s.retour();
-            System.out.println("Le scooter " + idScooter + " a été retourné. Il est de nouveau disponible.");
+            System.out.println("Le scooter " + id_Scooter + " a été retourné. Il est de nouveau disponible.");
         } else {
             System.out.println("Ce scooter n'est pas en cours de location.");
         }
@@ -44,7 +44,7 @@ public class Gestion {
     }
 
     public void afficherParc() {
-        // on affiche la liste des scooters disponible ou non 
+        
     }
     public void TraiterLocation (){
         //exemple
