@@ -3,15 +3,42 @@ public class HabitudeClient {
     private double totalDepense;
     private String categorieClient;
 
-    public void incrementerLocations() {
-        this.nbLocationsTotales++; // on augmente de nombre de location du client à chaque contrat signé par lui 
+    public HabitudeClient() {
+        this.nbLocationsTotales = 0;
+        this.totalDepense = 0.0;
+        this.categorieClient = "Standard";
     }
 
-    public void actualiserCategorie() {
+    public void incrementerLocations() {
+        this.nbLocationsTotales++; // on augmente de nombre de location du client à chaque contrat signé par lui 
+        actualiserCategorie();
+    }
+
+    public void ajouterDepense(double montant) {
+        if (montant > 0) {
+            this.totalDepense += montant;
+            actualiserCategorie();
+        }
+    }
+
+    private void actualiserCategorie() {
         if (nbLocationsTotales > 10 || totalDepense > 1000) this.categorieClient = "VIP";
         // si le nombre de locations du client est supérieur à dix ou que le montant dépensé est supérieur à mille euros, alors le client est catégorisé comme VIP
         else this.categorieClient = "Standard";
         // sinon, il est considéré comme un client standard
     }
 
+    public int getNbLocationsTotales() {
+        return nbLocationsTotales;
+    }
+
+    public double getTotalDepense() {
+        return totalDepense;
+    }
+
+    public String getCategorieClient() {
+        return categorieClient;
+    }
 }
+
+
