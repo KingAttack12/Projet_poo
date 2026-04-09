@@ -23,7 +23,7 @@ public class Logiciel {
         int choix;
         do{
             afficherMenu();
-            int choix = scanner.nextInt();
+            choix = scanner.nextInt();
             scanner.nextLine();
             switch(choix){
                 case 1: 
@@ -46,9 +46,9 @@ public class Logiciel {
                     System.out.println("Fermeture du programme !");
             
             }
-        }while(choix != 6){
+        }while(choix != 6);
             scanner.close();
-        }
+        
     }
 
     public static void main(String[] args){

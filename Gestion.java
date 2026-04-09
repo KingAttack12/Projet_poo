@@ -13,6 +13,7 @@ public class Gestion {
         this.listeContrats = new ArrayList<>();
     }
 
+    // Point 5
     public void saisirParc() {
         // Exemple
         Modele mod = new Modele("Yamaha", "100ch", "Tmax", "Europe");
@@ -21,6 +22,7 @@ public class Gestion {
         System.out.println("Scooter ajouté avec succès.");
     }
 
+    //Point 2
     public void traiterRetour(String id_Scooter) {
         Scooter s = monParc.chercherScooter(id_Scooter);
         if (s != null && !s.isEstDisponible()) {
@@ -31,6 +33,7 @@ public class Gestion {
         }
     }
 
+    //Point 3
     public void afficherEtatScooter(String id_scooter) {
         // on affiche le statut du parc (de la classe Parc)
         Scooter s = monParc.chercherScooter(id_scooter);
@@ -39,22 +42,27 @@ public class Gestion {
             System.out.println("Le scooter d'identification : "+ s.getId()+" a parcouru"+ s.getKilometrage()+ "km et a pour etat :"+ etat);
         }
         else {
-            System.out.println("Scooter introuvable")        
+            System.out.println("Scooter introuvable");       
         }
     }
 
+    //Point 4
     public void afficherParc() {
-        System.out.println("--- État du Parc ---");
+        System.out.println("État du Parc :");
         for (Scooter s : monParc.getListeScooters()) {
             afficherEtatScooter(s.getId());
         }
     }
-    public void TraiterLocation (){
-        //exemple
-        Client client1 = new Client("Fisson", "Sylvain", 001);
-        Scooter scoot1 = s1.Parc(); 
-        Tarification tarif1 = new Tarification(10);
-        Contrat C1 = new Contrat("C001", client1, scoot1, tarif1);
+
+    //Point 1
+    public void TraiterLocation (String id_scooter){
+        Scooter s = monParc.chercherScooter(id_scooter);
+            if(s != null && s.isEstDisponible()){
+                s.louer();
+                System.out.println("Le scooter " + id_scooter + " a été loué.");
+            }else{
+                System.out.println("Le scooter est introuvable ou déja en location");
+            }
     }
     
 }
