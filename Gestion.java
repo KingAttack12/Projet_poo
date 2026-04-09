@@ -34,6 +34,16 @@ public class Gestion {
         }
     }
 
+    public void saisirParc2(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
+        if(monParc.chercherScooter(id_scooter) == null){
+            Modele mod = new Modele(nomModele, moteur, marque, pays);
+            Scooter newScooter = new Scooter(id_scooter, km_init, mod);
+            monParc.ajouterScooter(newScooter);
+            System.out.println("Le scooter " + id_scooter + " a été ajouté au parc avec succès !");
+        }else{
+            System.out.println("Un scooter avec l'ID " + id_scooter + " existe déjà dans le parc.")
+        }
+    }
     //Point 2
     public void traiterRetour(String id_Scooter, double kmParcourus) {
         Scooter s = monParc.chercherScooter(id_Scooter);
