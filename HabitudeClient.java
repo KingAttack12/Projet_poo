@@ -3,11 +3,10 @@ public class HabitudeClient {
     private double totalDepense;
     private String categorieClient;
 
-    public HabitudeClient() {
+    public HabitudeClient(int nbLocation, double totalDepense) {
         this.nbLocationsTotales = 0;
         this.totalDepense = 0.0;
-        this.categorieClient = "Standard";
-    }
+        }
 
     public void incrementerLocations() {
         this.nbLocationsTotales++; // on augmente de nombre de location du client à chaque contrat signé par lui 
@@ -40,5 +39,3 @@ public class HabitudeClient {
         return categorieClient;
     }
 }
-
-
