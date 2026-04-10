@@ -51,7 +51,7 @@ public class Logiciel {
                     String id = scanner.nextLine();
                     System.out.println("Kilométrage de départ : ");
                     double KM_init = scanner.nextDouble();
-                    System.out.println("Marque :");
+                    System.out.println("Marque : ");
                     String marque = scanner.nextLine();
                     System.out.print("Modèle : ");
                     String modele = scanner.nextLine();
