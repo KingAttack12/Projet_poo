@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Gestion {
+    Scanner scanner = new Scanner(System.in);
     private Parc monParc;
     private List<Client> listeClients;
     private List<Contrat> listeContrats;
