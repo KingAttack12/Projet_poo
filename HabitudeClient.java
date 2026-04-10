@@ -3,9 +3,9 @@ public class HabitudeClient {
     private double totalDepense;
     private String categorieClient;
 
-    public HabitudeClient() {
-        this.nbLocationsTotales = 0;
-        this.totalDepense = 0.0;
+    public HabitudeClient(int nblocation, double total) {
+        this.nbLocationsTotales = nblocation;
+        this.totalDepense = total;
         this.categorieClient = "Standard";
     }
 
