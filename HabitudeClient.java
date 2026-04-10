@@ -40,5 +40,3 @@ public class HabitudeClient {
         return categorieClient;
     }
 }
-
-
