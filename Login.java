@@ -8,7 +8,7 @@ public class Login {
     }
 
     public boolean verifierConnexion(String id, String mdp) {
-        // si le mot de passe et l'identifié donné sont correct, alors l'accès est autorisé
+        // si le mot de passe et l'identifiant donné sont correct, alors l'accès est autorisé
         // sinon, le système refuse l'accès et reviens au départ
         if (this.nomUtilisateur == id && this.mot_de_passe == mdp) {
             System.out.print("Accès autorisé");
