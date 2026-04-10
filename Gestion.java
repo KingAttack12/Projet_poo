@@ -83,9 +83,9 @@ public class Gestion {
         Scooter s = monParc.chercherScooter(id_scooter);
             if(s != null && s.isEstDisponible()){
                 s.louer();
-                System.out.println("Le scooter " + id_scooter + " a été loué.");
+                System.out.println("\nLe scooter " + id_scooter + " a été loué.");
             }else{
-                System.out.println("Le scooter est introuvable ou déja en location");
+                System.out.println("\nLe scooter est introuvable ou déja en location");
             }
     }
 
