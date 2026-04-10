@@ -59,11 +59,11 @@ public class Gestion {
 
     //Point 3
     public void afficherEtatScooter(String id_scooter) {
-        // on affiche le statut du parc (de la classe Parc)
+        // on affiche le statut du parc (de la classe Parc)g
         Scooter s = monParc.chercherScooter(id_scooter);
         if(s != null){
             String etat = s.isEstDisponible() ? "Disponible" : "Indisponible";
-            System.out.println("Le scooter d'identification : " + s.getId() + " a parcouru " + s.getKilometrage() + " km et a pour état : " + etat + " a pour caractéristiques " + s.getModele());
+            System.out.println("Scooter ID : " + s.getId() + "\n- Nombre de km : "+ s.getKilometrage() +"\n- Modele : "+ s.getModele() +"ETAT : "+ etat);
         }
         else {
             System.out.println("Scooter introuvable");       
@@ -72,7 +72,16 @@ public class Gestion {
 
     //Point 4
     public void afficherParc() {
-        System.out.println("État du Parc :");
+        System.out.println("--- État du Parc --- ");
+        List<Scooter> liste = monParc.getListeScooters();
+        int total = liste.size();
+        int libre = 0;
+        for (Scooter s : liste) {
+            if(s.isEstDisponible()){
+                libre ++;
+            }
+        }
+        System.out.print("Total : "+ total + "; Libre : "+ libre);
         for (Scooter s : monParc.getListeScooters()) {
             afficherEtatScooter(s.getId());
         }

@@ -2,7 +2,7 @@ public class Scooter {
     private String id;
     private double kilometrage;
     private boolean estDisponible;
-    private Modele modele; 
+    private Modele modele;
     
     public Scooter(String id, double kilometrage, Modele modele) {
         this.id = id;
