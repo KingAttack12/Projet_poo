@@ -39,9 +39,9 @@ public class Gestion {
             Modele mod = new Modele(nomModele, moteur, marque, pays);
             Scooter newScooter = new Scooter(id_scooter, km_init, mod);
             monParc.ajouterScooter(newScooter);
-            System.out.println("Le scooter " + id_scooter + " a été ajouté au parc avec succès !");
+            System.out.println("\nLe scooter " + id_scooter + " a été ajouté au parc avec succès !");
         }else{
-            System.out.println("Un scooter avec l'ID " + id_scooter + " existe déjà dans le parc.");
+            System.out.println("\nUn scooter avec l'ID " + id_scooter + " existe déjà dans le parc.");
         }
     }
     //Point 2
