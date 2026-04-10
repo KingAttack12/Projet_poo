@@ -10,17 +10,6 @@ public class Parc {
         this.listeScooters = new ArrayList<>();
     }
 
-    public void compterscooter(List<Scooter> listeScooters){
-        System.out.println("Total : "+ listeScooters.size());
-        int compteur = 0;
-        for (Scooter s : listeScooters) {
-            if(s.isEstDisponible()){
-                compteur += 1;
-            }
-        }
-        System.out.print("Libre : " + compteur);
-    }
-
     public void ajouterScooter(Scooter s) {
         this.listeScooters.add(s);
     }
