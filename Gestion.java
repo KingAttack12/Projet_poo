@@ -41,7 +41,7 @@ public class Gestion {
             monParc.ajouterScooter(newScooter);
             System.out.println("Le scooter " + id_scooter + " a été ajouté au parc avec succès !");
         }else{
-            System.out.println("Un scooter avec l'ID " + id_scooter + " existe déjà dans le parc.")
+            System.out.println("Un scooter avec l'ID " + id_scooter + " existe déjà dans le parc.");
         }
     }
     //Point 2
