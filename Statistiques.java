@@ -8,15 +8,13 @@ public class Statistiques extends Gestion {
         return 0.0;
     }
 
-    public Client topClient(List<Client> listeClients){
+    public Client TopClient(List<Client> listeClients) {
         Client meilleurClient = null;
-    for (Client c : listeClients) {
-        if (c.isVIP() && c.getotalDepenses() > 10000) {
-            if (meilleurClient == null || c.gettotalDepenses() > meilleurClient.gettotalDepenses()) {
+        if (c.isVIP() && c.gettotalDepenses() > 10000) {
+            if (meilleurClient == null || c.getDepenses() > meilleurClient.getDepenses()) {
                 meilleurClient = c;
             }
         }
+        return meilleurClient;
     }
-    return meilleurClient; 
-}
 }
