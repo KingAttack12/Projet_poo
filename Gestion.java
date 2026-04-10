@@ -84,8 +84,10 @@ public class Gestion {
             }
         }
         System.out.print("Total : "+ total + "; Libre : "+ libre);
+        System.out.println("\n--- liste des véhicule ---");
         for (Scooter s : monParc.getListeScooters()) {
-            afficherEtatScooter(s.getId());
+            String etat = s.isEstDisponible() ? "Dispo" : "Loué";
+            System.out.println("["+ etat + "] Scooter n° "+ s.getId()+"("+ s.getKilometrage() + "km )");
         }
     }
 
