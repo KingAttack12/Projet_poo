@@ -63,7 +63,7 @@ public class Gestion {
         Scooter s = monParc.chercherScooter(id_scooter);
         if(s != null){
             String etat = s.isEstDisponible() ? "Disponible" : "Indisponible";
-            System.out.println("Le scooter d'identification : " + s.getId() + " a parcouru " + s.getKilometrage() + " km et a pour état : " + etat);
+            System.out.println("Le scooter d'identification : " + s.getId() + " a parcouru " + s.getKilometrage() + " km et a pour état : " + etat + " a pour caractéristiques " + s.getModele());
         }
         else {
             System.out.println("Scooter introuvable");       
