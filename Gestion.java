@@ -105,5 +105,8 @@ public class Gestion {
     public Parc getMonParc() {
         return monParc;
     }
-    
+
+    public List<Client> getListeClients() {
+        return listeClients;
+    }
 }

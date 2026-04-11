@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class Logiciel {
-    private Gestion gestionnaire;
+    private Statistiques gestionnaire;
 
     public Logiciel() {
-        this.gestionnaire = new Gestion();
+        this.gestionnaire = new Statistiques();
     }
 
     public void afficherMenu() {
@@ -14,7 +14,8 @@ public class Logiciel {
         System.out.println("3. État d'un scooter");
         System.out.println("4. Affichage de l'état du parc de scooters");
         System.out.println("5. Saisie du parc des scooters");
-        System.out.println("6. Quitter le programme");
+        System.out.println("6. Statistiques");
+        System.out.println("7. Quitter le programme");
         System.out.print("Votre choix : ");
     } 
 
@@ -63,6 +64,16 @@ public class Logiciel {
                     gestionnaire.saisirParc2(id, KM_init, modele, moteur, marque, pays);
                     break;
                 case 6:
+                    System.out.println("--- Statistiques ---");
+                    Client meilleurClient = gestionnaire.TopClient(gestionnaire.getListeClients());
+                    if (meilleurClient == null) {
+                        System.out.println("Aucun client disponible pour afficher des statistiques.");
+                    } else {
+                        System.out.println("Meilleur client : " + meilleurClient.getInfosClient());
+                        System.out.println("Dépense totale : " + meilleurClient.getHabitude().getTotalDepense() + "€");
+                    }
+                    break;
+                case 7:
                     System.out.println("Fermeture du programme !");
                     break;
                 default:
@@ -70,7 +81,7 @@ public class Logiciel {
                     break;
             
             }
-        }while(choix != 6);
+        }while(choix != 7);
             scanner.close();
         
     }

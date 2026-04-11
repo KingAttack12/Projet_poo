@@ -24,6 +24,10 @@ public class Client {
         return "Client N°" + id_client + " : " + nom + " " + prenom + " " + telephone + " " + e_mail + " " + habitude + " " + login;
     }
 
+    public HabitudeClient getHabitude() {
+        return habitude;
+    }
+
     public void modifierContact(String tel, String email) {
         this.telephone = tel;
         this.e_mail = email;

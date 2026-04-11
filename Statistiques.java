@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Statistiques extends Gestion {
 
     public double calculerChiffreAffaireMois() {
@@ -9,9 +11,16 @@ public class Statistiques extends Gestion {
     }
 
     public Client TopClient(List<Client> listeClients) {
+        if (listeClients == null || listeClients.isEmpty()) {
+            return null;
+        }
         Client meilleurClient = null;
-        if (c.isVIP() && c.gettotalDepenses() > 10000) {
-            if (meilleurClient == null || c.getDepenses() > meilleurClient.getDepenses()) {
+        for (Client c : listeClients) {
+            if (c == null || c.getHabitude() == null) {
+                continue;
+            }
+
+            if (meilleurClient == null || c.getHabitude().getTotalDepense() > meilleurClient.getHabitude().getTotalDepense()) {
                 meilleurClient = c;
             }
         }
