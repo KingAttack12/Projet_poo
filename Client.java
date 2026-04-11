@@ -6,22 +6,19 @@ public class Client {
     private String e_mail;
     
     // Associations
-    private Login login;
     private HabitudeClient habitude;
 
-    public Client(String nom, String prenom, int id_client, String telephone, String e_mail, Login login, HabitudeClient habitude) {
+    public Client(String nom, String prenom, int id_client, String telephone, String e_mail, HabitudeClient habitude) {
         this.nom = nom;
         this.prenom = prenom;
         this.id_client = id_client;
         this.telephone = telephone;
         this.e_mail = e_mail;
-        this.login = login;
         this.habitude = habitude;
-
     }
 
     public String getInfosClient() {
-        return "Client N°" + id_client + " : " + nom + " " + prenom + " " + telephone + " " + e_mail + " " + habitude + " " + login;
+        return "\n\nClient N°" + id_client + " : " + nom + " " + prenom + "\n- numéro : " + telephone + "\n- email : " + e_mail + "\n- Habitude : " + habitude;
     }
 
     public HabitudeClient getHabitude() {

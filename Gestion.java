@@ -13,6 +13,7 @@ public class Gestion {
         this.listeClients = new ArrayList<>();
         this.listeContrats = new ArrayList<>();
         initialiserParc();
+        initialiserClientsDeTest();
     }
 
     private void initialiserParc() {
@@ -23,18 +24,17 @@ public class Gestion {
         }
     }
 
-    // Point 5
-    public void saisirParc() {
-        if (monParc.chercherScooter("S001") == null) {
-            Modele mod = new Modele("Yamaha", "100ch", "Tmax", "Europe");
-            Scooter s1 = new Scooter("S001", 1500.5, mod);
-            monParc.ajouterScooter(s1);
-            System.out.println("Scooter ajouté avec succès.");
-        } else {
-            System.out.println("Le parc est déjà initialisé. Aucun nouveau scooter n'est ajouté.");
-        }
+    private void initialiserClientsDeTest() {
+        HabitudeClient hab1 = new HabitudeClient(12, 1500.0);
+        Client client1 = new Client("Fisson", "Sylvain", 1, "012345678", "sylvain.fisson@mail.com", hab1);
+        listeClients.add(client1);
+
+        HabitudeClient hab2 = new HabitudeClient(4, 450.0);
+        Client client2 = new Client("Potter", "Harry", 2, "07777777777", "harry.potter@mail.com", hab2);
+        listeClients.add(client2);
     }
 
+    // Point 5
     public void saisirParc2(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
         if(monParc.chercherScooter(id_scooter) == null){
             Modele mod = new Modele(nomModele, moteur, marque, pays);

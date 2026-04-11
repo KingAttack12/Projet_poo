@@ -70,8 +70,9 @@ public class Logiciel {
                         System.out.println("Aucun client disponible pour afficher des statistiques.");
                     } else {
                         System.out.println("Meilleur client : " + meilleurClient.getInfosClient());
-                        System.out.println("Dépense totale : " + meilleurClient.getHabitude().getTotalDepense() + "€");
+                        System.out.println("Dépense totale : " + meilleurClient.getHabitude().getTotalDepense() + "euro");
                     }
+                    Client vip = gestionnaire.
                     break;
                 case 7:
                     System.out.println("Fermeture du programme !");
