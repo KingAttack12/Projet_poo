@@ -72,7 +72,6 @@ public class Logiciel {
                         System.out.println("Meilleur client : " + meilleurClient.getInfosClient());
                         System.out.println("Dépense totale : " + meilleurClient.getHabitude().getTotalDepense() + "euro");
                     }
-                    Client vip = gestionnaire.
                     break;
                 case 7:
                     System.out.println("Fermeture du programme !");
