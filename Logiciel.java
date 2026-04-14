@@ -47,10 +47,14 @@ public class Logiciel {
                     gestionnaire.afficherParc();
                     break;
                 case 5:
+                    System.out.println("Combien de scooter voulez vous crée ? : ");
+                    int nb = scanner.nextInt();
+                    for(int i=0; i<=nb; i++){
+                    
                     System.out.println("--- Création d'un nouveau scooter ---");
                     System.out.print("\nID du scooter : ");
                     String id = scanner.nextLine();
-                    System.out.print("Kilométrage de départ : ");
+                    System.out.print("\nKilométrage de départ : ");
                     double KM_init = scanner.nextDouble();
                     scanner.nextLine();
                     System.out.print("Modèle : ");
@@ -62,6 +66,7 @@ public class Logiciel {
                     System.out.print("Pays d'origine : ");
                     String pays = scanner.nextLine();
                     gestionnaire.saisirParc2(id, KM_init, modele, moteur, marque, pays);
+                    }
                     break;
                 case 6:
                     System.out.println("--- Statistiques ---");
