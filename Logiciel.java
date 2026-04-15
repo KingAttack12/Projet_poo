@@ -28,11 +28,11 @@ public class Logiciel {
             scanner.nextLine();
             switch(choix){
                 case 1:
-                    System.out.println("Donner l'ID du scooter à louer :");
+                    System.out.print("Donner l'ID du scooter à louer :");
                     gestionnaire.traiterLocation(scanner.nextLine());
                     break;
                 case 2:
-                    System.out.println("Donner l'ID du scooter à retourner :");;
+                    System.out.print("Donner l'ID du scooter à retourner : ");;
                     String idRetour = scanner.nextLine();
                     System.out.println("Combien de kilomètres a-t-il parcouru pendant la location ? :");
                     double kmFaits = scanner.nextDouble();
@@ -40,32 +40,32 @@ public class Logiciel {
                     gestionnaire.traiterRetour(idRetour, kmFaits);
                     break;
                 case 3:
-                    System.out.println("Donner l'ID du scooter :");
+                    System.out.print("Donner l'ID du scooter :");
                     gestionnaire.afficherEtatScooter(scanner.nextLine());
                     break;
                 case 4:
                     gestionnaire.afficherParc();
                     break;
                 case 5:
-                    System.out.println("Combien de scooter voulez vous crée ? : ");
+                    System.out.print("Combien de scooter voulez vous créer ? : ");
                     int nb = scanner.nextInt();
-                    for(int i=0; i<=nb; i++){
-                    
-                    System.out.println("--- Création d'un nouveau scooter ---");
-                    System.out.print("\nID du scooter : ");
-                    String id = scanner.nextLine();
-                    System.out.print("\nKilométrage de départ : ");
-                    double KM_init = scanner.nextDouble();
-                    scanner.nextLine();
-                    System.out.print("Modèle : ");
-                    String modele = scanner.nextLine();
-                    System.out.print("Motorisation : ");
-                    String moteur = scanner.nextLine();
-                    System.out.print("Marque : ");
-                    String marque = scanner.nextLine();
-                    System.out.print("Pays d'origine : ");
-                    String pays = scanner.nextLine();
-                    gestionnaire.saisirParc2(id, KM_init, modele, moteur, marque, pays);
+                    scanner.nextLine(); // consomme le retour à la ligne après l'entier
+                    for(int i=0; i<nb; i++){
+                        System.out.println("--- Création d'un nouveau scooter ---");
+                        System.out.print("\nID du scooter : ");
+                        String id = scanner.nextLine();
+                        System.out.print("\nKilométrage de départ : ");
+                        double KM_init = scanner.nextDouble();
+                        scanner.nextLine();
+                        System.out.print("Modèle : ");
+                        String modele = scanner.nextLine();
+                        System.out.print("Motorisation : ");
+                        String moteur = scanner.nextLine();
+                        System.out.print("Marque : ");
+                        String marque = scanner.nextLine();
+                        System.out.print("Pays d'origine : ");
+                        String pays = scanner.nextLine();
+                        gestionnaire.saisirParc2(id, KM_init, modele, moteur, marque, pays);
                     }
                     break;
                 case 6:
