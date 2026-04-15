@@ -29,5 +29,9 @@ public class Client {
         this.telephone = tel;
         this.e_mail = email;
     }
+
+    public int getId_client(){
+        return id_client;
+    }
 }
 	

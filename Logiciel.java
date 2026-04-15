@@ -16,6 +16,7 @@ public class Logiciel {
         System.out.println("5. Saisie du parc des scooters");
         System.out.println("6. Statistiques");
         System.out.println("7. Quitter le programme");
+        System.out.println("8. Modifier le prix de base")
         System.out.print("Votre choix : ");
     } 
 
@@ -29,7 +30,11 @@ public class Logiciel {
             switch(choix){
                 case 1:
                     System.out.print("Donner l'ID du scooter à louer :");
-                    gestionnaire.traiterLocation(scanner.nextLine());
+                    String idloc = scanner.nextLine();
+                    System.out.print("Donner l'id du client : ");
+                    int idcli = scanner.nextInt();
+                    scanner.nextLine();
+                    gestionnaire.traiterLocation(idloc, idcli);
                     break;
                 case 2:
                     System.out.print("Donner l'ID du scooter à retourner : ");;
@@ -81,6 +86,11 @@ public class Logiciel {
                 case 7:
                     System.out.println("Fermeture du programme !");
                     break;
+                case 8:
+                    System.out.print("-----Modification tarif-----");
+                    System.out.print("Entrer le nouveau tarif : ");
+                    double tarif = scanner.nextDouble();
+                    Tarification prix = gestionnaire.modifierPrixBase(tarif);
                 default:
                     System.out.println("Choix invalide, veuillez réessayer.");
                     break;

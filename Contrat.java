@@ -51,6 +51,13 @@ public class Contrat {
     }
 
     public String editerFacture() {
-        return "Facture pour le contrat " + idContrat + "\n- Montant : " + montantTotal + "€" + "\nPour" + client.getInfosClient() + "\nDate de fin réelle : " + dateFinReelle;
+        return "Facture pour le contrat " + idContrat + "\n- Montant : " + montantTotal + " euro" + "\nPour :" + client.getInfosClient() + "\nDate de fin réelle : " + dateFinReelle;
+    }
+    public Scooter getScooter(){
+        return scooter;
+    }
+
+    public Date getDateFinReelle(){
+        return dateFinReelle;
     }
 }

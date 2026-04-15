@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Gestion {
-    Scanner scanner = new Scanner(System.in);
     private Parc monParc;
     private List<Client> listeClients;
     private List<Contrat> listeContrats;
@@ -21,6 +19,7 @@ public class Gestion {
             Modele mod = new Modele("Yamaha", "100ch", "Tmax", "Europe");
             Scooter s1 = new Scooter("S001", 1500.5, mod);
             monParc.ajouterScooter(s1);
+            
         }
     }
 
@@ -50,10 +49,24 @@ public class Gestion {
         Scooter s = monParc.chercherScooter(id_Scooter);
         if (s != null && !s.isEstDisponible()) {
             s.retour(kmParcourus);
+            Contrat Contratactif = null;
+            for( Contrat c : listeContrats){
+                if(c.getScooter().getId().equals(id_Scooter) && c.getDateFinReelle()==null){
+                    Contratactif = c;
+                    break;
+                }
+            }
             System.out.println("Le scooter " + id_Scooter + " a été retourné. Il est de nouveau disponible.");
             System.out.println("Son nouveau kilométrage est de : " + s.getKilometrage() + " km.");
+            if(Contratactif != null){
+                System.out.println("-----Facture------");
+                Contratactif.cloturerContrat(kmParcourus);
+                Contratactif.getScooter();
+                System.out.println(Contratactif.editerFacture());
+                System.out.println("-------------------");
+            }
         } else {
-            System.out.println("Ce scooter n'est pas en cours de location.");
+            System.out.println("Ce scooter n'est pas en cours de location ou introuvable");
         }
     }
 
@@ -92,11 +105,24 @@ public class Gestion {
     }
 
     //Point 1
-    public void traiterLocation (String id_scooter){
+    public void traiterLocation (String id_scooter, int id_client){
         Scooter s = monParc.chercherScooter(id_scooter);
+        Client c = null;
+        for(Client clientTempo : listeClients){
+            if(clientTempo.getId_client()== id_client){
+                c = clientTempo;
+            }
+        }
             if(s != null && s.isEstDisponible()){
                 s.louer();
-                System.out.println("\nLe scooter " + id_scooter + " a été loué.");
+                Tarification tarif = new Tarification(25.0);
+                String idContrat = "CRT-" + listeContrats.size() + 1;
+                java.util.Date finPrevu = new java.util.Date (System.currentTimeMillis() + (1000+60+60+24));
+                Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu);
+                listeContrats.add(nouveauContrat);
+                c.getHabitude().incrementerLocations();
+                System.out.println("\nLe contrat est n°"+ idContrat + " a été crée !");
+                System.out.println("\nLe scooter " + id_scooter + " a été loué et doit être retourner le : "+finPrevu);
             }else{
                 System.out.println("\nLe scooter est introuvable ou déja en location");
             }
@@ -109,4 +135,5 @@ public class Gestion {
     public List<Client> getListeClients() {
         return listeClients;
     }
+
 }
