@@ -16,7 +16,8 @@ public class Logiciel {
         System.out.println("5. Saisie du parc des scooters");
         System.out.println("6. Statistiques");
         System.out.println("7. Quitter le programme");
-        System.out.println("8. Modifier le prix de base")
+        System.out.println("8. Modifier le prix de base");
+        System.out.println("9. Saisie de clients");
         System.out.print("Votre choix : ");
     } 
 
@@ -87,10 +88,32 @@ public class Logiciel {
                     System.out.println("Fermeture du programme !");
                     break;
                 case 8:
-                    System.out.print("-----Modification tarif-----");
+                    System.out.println("----- Modification tarif -----");
                     System.out.print("Entrer le nouveau tarif : ");
                     double tarif = scanner.nextDouble();
-                    Tarification prix = gestionnaire.modifierPrixBase(tarif);
+                    scanner.nextLine();
+                    gestionnaire.modifierPrixBase(tarif);
+                    break;
+                case 9:
+                    System.out.print("Combien de client voulez vous rentrer ? : ");
+                    int cb = scanner.nextInt();
+                    scanner.nextLine(); // consomme le retour à la ligne après l'entier
+                    for(int i=0; i<cb; i++){
+                        System.out.println("--- Saisie du client n°"+(i+1)+" ---");
+                        System.out.print("\nID du client : ");
+                        int idClient = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Nom : ");
+                        String nomClient = scanner.nextLine();
+                        System.out.print("Prénom : ");
+                        String prenomClient = scanner.nextLine();
+                        System.out.print("Téléphone : ");
+                        String telephone = scanner.nextLine();
+                        System.out.print("Email : ");
+                        String email = scanner.nextLine();
+                        gestionnaire.saisirClient(nomClient, prenomClient, idClient, telephone, email);
+                    }
+                    break;
                 default:
                     System.out.println("Choix invalide, veuillez réessayer.");
                     break;

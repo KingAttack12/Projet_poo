@@ -5,11 +5,13 @@ public class Gestion {
     private Parc monParc;
     private List<Client> listeClients;
     private List<Contrat> listeContrats;
+    private Tarification tarificationBase;
 
     public Gestion() {
         this.monParc = new Parc();
         this.listeClients = new ArrayList<>();
         this.listeContrats = new ArrayList<>();
+        this.tarificationBase = new Tarification(25.0);
         initialiserParc();
         initialiserClientsDeTest();
     }
@@ -43,6 +45,19 @@ public class Gestion {
         }else{
             System.out.println("\nUn scooter avec l'ID " + id_scooter + " existe déjà dans le parc.");
         }
+    }
+
+    public void saisirClient(String nom, String prenom, int id_client, String telephone, String e_mail) {
+        for (Client client : listeClients) {
+            if (client.getId_client() == id_client) {
+                System.out.println("\nUn client avec l'ID " + id_client + " existe déjà.");
+                return;
+            }
+        }
+        HabitudeClient habitude = new HabitudeClient(0, 0.0);
+        Client nouveauClient = new Client(nom, prenom, id_client, telephone, e_mail, habitude);
+        listeClients.add(nouveauClient);
+        System.out.println("\nLe client " + prenom + " " + nom + " a été ajouté avec succès !");
     }
     //Point 2
     public void traiterRetour(String id_Scooter, double kmParcourus) {
@@ -115,7 +130,7 @@ public class Gestion {
         }
             if(s != null && s.isEstDisponible()){
                 s.louer();
-                Tarification tarif = new Tarification(25.0);
+                Tarification tarif = this.tarificationBase;
                 String idContrat = "CRT-" + listeContrats.size() + 1;
                 java.util.Date finPrevu = new java.util.Date (System.currentTimeMillis() + (1000+60+60+24));
                 Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu);
@@ -136,4 +151,11 @@ public class Gestion {
         return listeClients;
     }
 
+    public void modifierPrixBase(double nouveauPrix) {
+        if (nouveauPrix > 0) {
+            this.tarificationBase.modifierPrixBase(nouveauPrix);
+        } else {
+            System.out.println("Le nouveau tarif doit être supérieur à 0.");
+        }
+    }
 }
