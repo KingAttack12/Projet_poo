@@ -35,6 +35,10 @@ public class Gestion {
         listeClients.add(client2);
     }
 
+    private void InitaliserContrat(){
+        Contrat c1 = new Contrat(String , Client client, Scooter scooter, Tarification tarif, Date dateFinPrevue)
+    }
+
     // Point 5
     public void saisirParc2(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
         if(monParc.chercherScooter(id_scooter) == null){

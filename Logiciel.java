@@ -15,9 +15,9 @@ public class Logiciel {
         System.out.println("4. Affichage de l'état du parc de scooters");
         System.out.println("5. Saisie du parc des scooters");
         System.out.println("6. Statistiques");
-        System.out.println("7. Quitter le programme");
-        System.out.println("8. Modifier le prix de base");
-        System.out.println("9. Saisie de clients");
+        System.out.println("7. Modifier le prix de base");
+        System.out.println("8. Saisie de clients");
+        System.out.println("9. Quitter le programme");
         System.out.print("Votre choix : ");
     } 
 
@@ -87,17 +87,17 @@ public class Logiciel {
                     Double ChiffreAffaire = gestionnaire.calculerChiffreAffaireTotal(gestionnaire.getListeClients());
                     System.out.println("Chiffre d'affaire global : " + ChiffreAffaire);
                     break;
-                case 7:
+                case 9:
                     System.out.println("Fermeture du programme !");
                     break;
-                case 8:
+                case 7:
                     System.out.println("----- Modification tarif -----");
                     System.out.print("Entrer le nouveau tarif : ");
                     double tarif = scanner.nextDouble();
                     scanner.nextLine();
                     gestionnaire.modifierPrixBase(tarif);
                     break;
-                case 9:
+                case 8:
                     System.out.print("Combien de client voulez vous rentrer ? : ");
                     int cb = scanner.nextInt();
                     scanner.nextLine(); // consomme le retour à la ligne après l'entier
@@ -122,7 +122,7 @@ public class Logiciel {
                     break;
             
             }
-        }while(choix != 7);
+        }while(choix != 9);
             scanner.close();
         
     }
