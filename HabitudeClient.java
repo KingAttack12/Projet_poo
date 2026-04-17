@@ -6,7 +6,7 @@ public class HabitudeClient {
     public HabitudeClient(int nblocation, double total) {
         this.nbLocationsTotales = nblocation;
         this.totalDepense = total;
-        actualiserCategorie();
+        actualiserCategorie(); // on n'impose pas une catégorie mais on vérifie si le client répond aux conditions
     }
 
     public void incrementerLocations() {
