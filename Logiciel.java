@@ -75,7 +75,7 @@ public class Logiciel {
                     }
                     break;
                 case 6:
-                    System.out.println("--- Statistiques ---");
+                    System.out.println("--------------- Statistiques -------------");
                     Client meilleurClient = gestionnaire.TopClient(gestionnaire.getListeClients());
                     if (meilleurClient == null) {
                         System.out.println("Aucun client disponible pour afficher des statistiques.");
@@ -83,6 +83,9 @@ public class Logiciel {
                         System.out.println("Meilleur client : " + meilleurClient.getInfosClient());
                         System.out.println("Dépense totale : " + meilleurClient.getHabitude().getTotalDepense() + "euro");
                     }
+                    System.out.println("-----------------");
+                    Double ChiffreAffaire = gestionnaire.calculerChiffreAffaireTotal(gestionnaire.getListeClients());
+                    System.out.println("Chiffre d'affaire global : " + ChiffreAffaire);
                     break;
                 case 7:
                     System.out.println("Fermeture du programme !");

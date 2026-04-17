@@ -2,14 +2,15 @@ import java.util.List;
 
 public class Statistiques extends Gestion {
 
-    public double calculerChiffreAffaireTotal() {
+    public double calculerChiffreAffaireTotal(List<Client> listeClients) {
         if (listeClients == null || listeClients.isEmpty()) {
-            return null;
+            return 0;
         }
-    }
-
-    public double TauxOccupation() {
-        return 0.0;
+        double resultat=0;
+        for(Client c : listeClients){
+            resultat+= c.getHabitude().getTotalDepense();
+        }
+        return resultat;
     }
 
     public Client TopClient(List<Client> listeClients) {
