@@ -47,6 +47,7 @@ public class Gestion {
         }
     }
 
+    // Point 9
     public void saisirClient(String nom, String prenom, int id_client, String telephone, String e_mail) {
         for (Client client : listeClients) {
             if (client.getId_client() == id_client) {
@@ -151,6 +152,7 @@ public class Gestion {
         return listeClients;
     }
 
+    // Point 8
     public void modifierPrixBase(double nouveauPrix) {
         if (nouveauPrix > 0) {
             this.tarificationBase.modifierPrixBase(nouveauPrix);
