@@ -6,7 +6,7 @@ public class HabitudeClient {
     public HabitudeClient(int nblocation, double total) {
         this.nbLocationsTotales = nblocation;
         this.totalDepense = total;
-        this.categorieClient = "Standard";
+        actualiserCategorie();
     }
 
     public void incrementerLocations() {
@@ -36,7 +36,7 @@ public class HabitudeClient {
         return totalDepense;
     }
 
-    public String getCategorieClient() {
-        return categorieClient;
+    public String toString() {
+        return categorieClient; 
     }
 }
