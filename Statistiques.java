@@ -2,8 +2,10 @@ import java.util.List;
 
 public class Statistiques extends Gestion {
 
-    public double calculerChiffreAffaireMois() {
-        return 0.0;
+    public double calculerChiffreAffaireTotal() {
+        if (listeClients == null || listeClients.isEmpty()) {
+            return null;
+        }
     }
 
     public double TauxOccupation() {
