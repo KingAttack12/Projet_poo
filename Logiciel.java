@@ -122,7 +122,7 @@ public class Logiciel {
                     break;
             
             }
-        }while(choix != 9);
+        }while(choix != 9); // recommence tant que l'utilisateur ne tappe pas 9
             scanner.close();
         
     }
