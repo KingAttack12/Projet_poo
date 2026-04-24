@@ -2,26 +2,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Gestion {
-    private Parc monParc;
-    private List<Client> listeClients;
-    private List<Contrat> listeContrats;
-    private Tarification tarificationBase;
+    private Parc monParc; // tous les scooters du parc
+    private List<Client> listeClients; // liste de tous les clients
+    private List<Contrat> listeContrats; // historique des contrats et des locations
+    private Tarification tarificationBase; // le prix journalier par défaut
 
     public Gestion() {
-        this.monParc = new Parc();
-        this.listeClients = new ArrayList<>();
-        this.listeContrats = new ArrayList<>();
-        this.tarificationBase = new Tarification(25.0);
-        initialiserParc();
-        initialiserClientsDeTest();
-        initialiserContrat();
+        this.monParc = new Parc(); // on crée un parc vide
+        this.listeClients = new ArrayList<>(); // on crée une liste de clients vide
+        this.listeContrats = new ArrayList<>();// on crée une liste de contrats vide
+        this.tarificationBase = new Tarification(25.0); // on fixe le prix de base
+        initialiserParc(); // on mets des scooters dans le parc à scooter
+        initialiserClientsDeTest(); // on crée les clients
+        initialiserContrat(); // on crée une location
     }
 
     private void initialiserParc() {
-        if (monParc.chercherScooter("S001") == null) {
+        if (monParc.chercherScooter("S001") == null) { // si le scooter S001 n'existe pas, alors on le crée
             Modele mod = new Modele("Yamaha", "100ch", "Tmax", "Europe");
             Scooter s1 = new Scooter("S001", 1500.5, mod);
-            monParc.ajouterScooter(s1);
+            monParc.ajouterScooter(s1); // on l'ajoute dans le parc
             
         }
         if (monParc.chercherScooter("S002") == null) {
@@ -87,7 +87,7 @@ public class Gestion {
 
     // Point 5
     public void saisirParc2(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
-        if(monParc.chercherScooter(id_scooter) == null){
+        if(monParc.chercherScooter(id_scooter) == null){ // vérifie si l'id est libre
             Modele mod = new Modele(nomModele, moteur, marque, pays);
             Scooter newScooter = new Scooter(id_scooter, km_init, mod);
             monParc.ajouterScooter(newScooter);
@@ -101,18 +101,18 @@ public class Gestion {
     public void saisirClient(String nom, String prenom, int id_client, String telephone, String e_mail) {
         for (Client client : listeClients) {
             if (client.getId_client() == id_client) {
-                System.out.println("\nUn client avec l'ID " + id_client + " existe déjà.");
+                System.out.println("\nUn client avec l'ID " + id_client + " existe déjà."); // stoppe si l'id client existe déjà 
                 return;
             }
         }
-        HabitudeClient habitude = new HabitudeClient(0, 0.0);
+        HabitudeClient habitude = new HabitudeClient(0, 0.0); // un nouveau client représente zéro dépense
         Client nouveauClient = new Client(nom, prenom, id_client, telephone, e_mail, habitude);
         listeClients.add(nouveauClient);
         System.out.println("\nLe client " + prenom + " " + nom + " a été ajouté avec succès !");
     }
     //Point 2
     public void traiterRetour(String id_Scooter, double kmParcourus) {
-        Scooter s = monParc.chercherScooter(id_Scooter);
+        Scooter s = monParc.chercherScooter(id_Scooter); // cerche le scooter 
         if (s != null && !s.isEstDisponible()) {
             s.retour(kmParcourus);
             Contrat Contratactif = null;
