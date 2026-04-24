@@ -80,7 +80,7 @@ public class Gestion {
             if (s1 != null && s1.isEstDisponible()) {
                 s1.louer();
                 String idContrat = "CRT-" + (listeContrats.size() + 1);
-                Date dateFinPrevue = new Date(System.currentTimeMillis() + 7L * 24 * 60 * 60 * 1000);
+                Date dateFinPrevue = new Date(System.currentTimeMillis() + 604800000);
                 Contrat c1 = new Contrat(idContrat, client, s1, tarificationBase, dateFinPrevue);
                 listeContrats.add(c1);
             }

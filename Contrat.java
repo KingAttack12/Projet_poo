@@ -1,7 +1,7 @@
 import java.util.Date;
 
 public class Contrat { // permet d'obtenir les données du contrat
-    private static String idContrat;
+    private String idContrat;
     private Date dateDebut;
     private Date dateFinPrevue;
     private Date dateFinReelle;
@@ -20,7 +20,7 @@ public class Contrat { // permet d'obtenir les données du contrat
         this.scooter = scooter;
         this.tarification = tarif;
         this.dateFinPrevue = dateFinPrevue;
-        this.dateDebut = new Date(); // Date du jour enregistrée
+        this.dateDebut = new Date();
     }
 
     public double calculerPrixEstime() {

@@ -1,7 +1,7 @@
 public class Client { // donne les données personnelles du client
     private String nom;
     private String prenom;
-    private static int id_client;
+    private int id_client;
     private String telephone;
     private String e_mail;
     
