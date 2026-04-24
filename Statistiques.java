@@ -32,4 +32,13 @@ public class Statistiques extends Gestion {
         }
         return meilleurClient; // on renvoie le client qui a dépensé le plus d'argent 
     }
+    //public Scooter Topkmscooter(List<Scooter> listeScooters){
+        //if (listeScooters == null || listeScooters.isEmpty()) { // si la liste est vide
+            //return null; // on renvoie une valeur nulle
+        //}
+        //Scooter topScooter = null;
+        //for (Scooter s : listeScooters) {
+            //s.getKilometrage()
+        //}
+    //}
 }

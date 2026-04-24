@@ -30,9 +30,9 @@ public class Logiciel {
             scanner.nextLine(); // passe à la ligne suivante (pour éviter les bugs)
             switch(choix){ // dépend du chiffre choisi par l'utilisateur
                 case 1:
-                    System.out.print("Donner l'ID du scooter à louer :");
+                    System.out.print("Donner l'ID du scooter à louer (exemple : S001 ou S002...):");
                     String idloc = scanner.nextLine();
-                    System.out.print("Donner l'id du client : ");
+                    System.out.print("Donner l'id du client (exemple : 1 ou 2...): ");
                     int idcli = scanner.nextInt();
                     scanner.nextLine();
                     gestionnaire.traiterLocation(idloc, idcli);
@@ -46,7 +46,7 @@ public class Logiciel {
                     gestionnaire.traiterRetour(idRetour, kmFaits);
                     break;
                 case 3:
-                    System.out.print("Donner l'ID du scooter :");
+                    System.out.print("Donner l'ID du scooter (exemple : S001 ou S002...):");
                     gestionnaire.afficherEtatScooter(scanner.nextLine());
                     break;
                 case 4:
@@ -58,7 +58,7 @@ public class Logiciel {
                     scanner.nextLine(); // consomme le retour à la ligne après l'entier
                     for(int i=0; i<nb; i++){
                         System.out.println("--- Création d'un nouveau scooter ---");
-                        System.out.print("\nID du scooter : ");
+                        System.out.print("\nID du scooter (exemple : S001 ou S002...): ");
                         String id = scanner.nextLine();
                         System.out.print("\nKilométrage de départ : ");
                         double KM_init = scanner.nextDouble();
@@ -103,7 +103,7 @@ public class Logiciel {
                     scanner.nextLine(); // consomme le retour à la ligne après l'entier
                     for(int i=0; i<cb; i++){
                         System.out.println("--- Saisie du client n°"+(i+1)+" ---");
-                        System.out.print("\nID du client : ");
+                        System.out.print("\nID du client (exemple : 1 ou 2...): ");
                         int idClient = scanner.nextInt();
                         scanner.nextLine();
                         System.out.print("Nom : ");

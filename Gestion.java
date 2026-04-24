@@ -16,7 +16,7 @@ public class Gestion {
         this.tarificationBase = new Tarification(25.0); // on fixe le prix de base
         initialiserParc(); // on mets des scooters dans le parc à scooter
         initialiserClientsDeTest(); // on crée les clients
-        initialiserContrat(); // on crée une location
+        //initialiserContrat(); // on crée une location
     }
 
     private void initialiserParc() {
@@ -73,19 +73,19 @@ public class Gestion {
         listeClients.add(client7);
     }
 
-    private void initialiserContrat() {
-        if (!listeClients.isEmpty()) {
-            Client client = listeClients.get(0);
-            Scooter s1 = monParc.chercherScooter("S001");
-            if (s1 != null && s1.isEstDisponible()) {
-                s1.louer();
-                String idContrat = "CRT-" + (listeContrats.size() + 1);
-                Date dateFinPrevue = new Date(System.currentTimeMillis() + 604800000);
-                Contrat c1 = new Contrat(idContrat, client, s1, tarificationBase, dateFinPrevue);
-                listeContrats.add(c1);
-            }
-        }
-    }
+    //private void initialiserContrat() {
+        //if (!listeClients.isEmpty()) {
+            //Client client = listeClients.get(0);
+            //Scooter s1 = monParc.chercherScooter("S001");
+            //if (s1 != null && s1.isEstDisponible()) {
+                //s1.louer();
+                //String idContrat = "CRT-" + (listeContrats.size() + 1);
+                //Date dateFinPrevue = new Date(System.currentTimeMillis() + (604800000));
+                //Contrat c1 = new Contrat(idContrat, client, s1, tarificationBase, dateFinPrevue);
+                //listeContrats.add(c1);
+            //}
+        //}
+    //}
 
     // Point 5
     public void saisirParc2(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
@@ -185,7 +185,7 @@ public class Gestion {
                 s.louer(); // on marque le scooter comme loué
                 Tarification tarif = this.tarificationBase;
                 String idContrat = "CRT-" + listeContrats.size() + 1;
-                java.util.Date finPrevu = new java.util.Date (System.currentTimeMillis()+(604800000)); // correspond à une semaine en milisecondes (date de fin prévue)
+                java.util.Date finPrevu = new Date (System.currentTimeMillis()+(11)); // correspond à une semaine en milisecondes (date de fin prévue)
                 Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu);
                 listeContrats.add(nouveauContrat); // ajoute à la liste des contrats
                 c.getHabitude().incrementerLocations(); // +1 locations pour l'habitude de ce client

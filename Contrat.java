@@ -6,7 +6,7 @@ public class Contrat { // permet d'obtenir les données du contrat
     private Date dateFinPrevue;
     private Date dateFinReelle;
     private double montantTotal;
-    private int joursDeRetard;
+    private double joursDeRetard;
     private double penaliteParJour;
     
     // Les liaisons UML
@@ -45,9 +45,15 @@ public class Contrat { // permet d'obtenir les données du contrat
     }
 
     public void cloturerContrat(double kmAjoutes) {
-        this.dateFinReelle = new Date(); // on note la date de retour
+        this.dateFinReelle = new Date();
+        // Calcul des jours de retard
+        double diff = this.dateFinReelle.getTime() - this.dateFinPrevue.getTime();
+        this.joursDeRetard = (diff / (1000L * 60 * 60 * 24));
+        if (this.joursDeRetard > 0) this.joursDeRetard = 1;
+        this.penaliteParJour = 10.0;
+        // Calcul du montant total
         this.montantTotal = calculerPrixEstime() + calculerMontantPenalite();
-        this.scooter.retour(kmAjoutes); // On libère le scooter et on met à jour son compteur
+        this.scooter.retour(kmAjoutes);
     }
     
     public double calculerMontantPenalite() {
