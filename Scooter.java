@@ -1,5 +1,5 @@
 public class Scooter {
-    private String id;
+    private static String id;
     private double kilometrage;
     private boolean estDisponible;
     private Modele modele; // référence à la classe modèle

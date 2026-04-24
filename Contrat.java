@@ -1,7 +1,7 @@
 import java.util.Date;
 
 public class Contrat { // permet d'obtenir les données du contrat
-    private String idContrat;
+    private static String idContrat;
     private Date dateDebut;
     private Date dateFinPrevue;
     private Date dateFinReelle;

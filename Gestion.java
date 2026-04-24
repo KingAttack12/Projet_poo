@@ -1,4 +1,6 @@
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Gestion {
@@ -78,7 +80,7 @@ public class Gestion {
             if (s1 != null && s1.isEstDisponible()) {
                 s1.louer();
                 String idContrat = "CRT-" + (listeContrats.size() + 1);
-                java.util.Date dateFinPrevue = new java.util.Date(System.currentTimeMillis() + 24L * 60 * 60 * 1000);
+                Date dateFinPrevue = new Date(System.currentTimeMillis() + 7L * 24 * 60 * 60 * 1000);
                 Contrat c1 = new Contrat(idContrat, client, s1, tarificationBase, dateFinPrevue);
                 listeContrats.add(c1);
             }
@@ -183,7 +185,7 @@ public class Gestion {
                 s.louer();
                 Tarification tarif = this.tarificationBase;
                 String idContrat = "CRT-" + listeContrats.size() + 1;
-                java.util.Date finPrevu = new java.util.Date (System.currentTimeMillis() + (1000+60+60+24));
+                java.util.Date finPrevu = new java.util.Date (System.currentTimeMillis()+(604800000));
                 Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu);
                 listeContrats.add(nouveauContrat);
                 c.getHabitude().incrementerLocations();
