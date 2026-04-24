@@ -113,10 +113,10 @@ public class Gestion {
     //Point 2
     public void traiterRetour(String id_Scooter, double kmParcourus) {
         Scooter s = monParc.chercherScooter(id_Scooter); // cerche le scooter 
-        if (s != null && !s.isEstDisponible()) {
-            s.retour(kmParcourus);
+        if (s != null && !s.isEstDisponible()) { // s'il existe déjà et qu'il est loué
+            s.retour(kmParcourus); // on le libère et on ajoute les kilomètres
             Contrat Contratactif = null;
-            for( Contrat c : listeContrats){
+            for( Contrat c : listeContrats){ // on cherche le contrat correspondant
                 if(c.getScooter().getId().equals(id_Scooter) && c.getDateFinReelle()==null){
                     Contratactif = c;
                     break;
@@ -126,9 +126,9 @@ public class Gestion {
             System.out.println("Son nouveau kilométrage est de : " + s.getKilometrage() + " km.");
             if(Contratactif != null){
                 System.out.println("-----Facture------");
-                Contratactif.cloturerContrat(kmParcourus);
+                Contratactif.cloturerContrat(kmParcourus); // on calcule le prix final
                 Contratactif.getScooter();
-                System.out.println(Contratactif.editerFacture());
+                System.out.println(Contratactif.editerFacture()); // on affiche la facture
                 System.out.println("-------------------");
             }
         } else {
@@ -159,28 +159,28 @@ public class Gestion {
         int libre = 0;
         for (Scooter s : liste) {
             if(s.isEstDisponible()){
-                libre ++;
+                libre ++; // compte les scooters disponibles
             }
         }
         System.out.print("Total : "+ total + "; Libre : "+ libre);
         System.out.println("\n--- liste des véhicule ---");
         for (Scooter s : monParc.getListeScooters()) {
             String etat = s.isEstDisponible() ? "Dispo" : "Loué";
-            System.out.println("["+ etat + "] Scooter n° "+ s.getId()+"("+ s.getKilometrage() + "km )");
+            System.out.println("["+ etat + "] Scooter n° "+ s.getId()+"("+ s.getKilometrage() + "km )"); // créer une boucle pour savoir si le scooter est libre ou loué
         }
     }
 
     //Point 1
     public void traiterLocation (String id_scooter, int id_client){
-        Scooter s = monParc.chercherScooter(id_scooter);
+        Scooter s = monParc.chercherScooter(id_scooter); // on trouve le scooter
         Client c = null;
-        for(Client clientTempo : listeClients){
+        for(Client clientTempo : listeClients){ // on trouve le client par son id
             if(clientTempo.getId_client()== id_client){
                 c = clientTempo;
             }
         }
             if(s != null && s.isEstDisponible()){
-                s.louer();
+                s.louer(); // on marque le scooter comme loué
                 Tarification tarif = this.tarificationBase;
                 String idContrat = "CRT-" + listeContrats.size() + 1;
                 java.util.Date finPrevu = new java.util.Date (System.currentTimeMillis() + (1000+60+60+24));
