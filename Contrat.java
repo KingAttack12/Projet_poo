@@ -27,7 +27,6 @@ public class Contrat { // permet d'obtenir les données du contrat
         if (this.dateDebut == null || this.dateFinPrevue == null) {
             return 0.0; 
         }
-
         // on calcule la différence de temps en milisecondes
         long differenceEnMillisecondes = this.dateFinPrevue.getTime() - this.dateDebut.getTime();
 
@@ -37,8 +36,12 @@ public class Contrat { // permet d'obtenir les données du contrat
         if (nombreDeJours == 0) {
             nombreDeJours = 1;
         } // minimum un jour de facturé
-
-        return this.tarification.calculerTarifBase(nombreDeJours); // on retourne les résultats des calculs
+        //reduc de 20% sur les VIP
+        double Prixfinal = this.tarification.calculerTarifBase(nombreDeJours);
+        if(this.client.getHabitude() != null && this.client.getHabitude().toString().equals("VIP")){
+            Prixfinal = Prixfinal * 0.80;
+        }
+        return Prixfinal; // on retourne les résultats des calculs
     }
 
     public void cloturerContrat(double kmAjoutes) {

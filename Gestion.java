@@ -24,6 +24,21 @@ public class Gestion {
             monParc.ajouterScooter(s1);
             
         }
+        if (monParc.chercherScooter("S002") == null) {
+            Modele mod2 = new Modele("Piaggio", "125cc", "Liberty", "Europe");
+            Scooter s2 = new Scooter("S002", 800.0, mod2);
+            monParc.ajouterScooter(s2);
+        }
+        if (monParc.chercherScooter("S003") == null) {
+            Modele mod3 = new Modele("Honda", "150cc", "PCX", "Asie");
+            Scooter s3 = new Scooter("S003", 2200.0, mod3);
+            monParc.ajouterScooter(s3);
+        }
+        if (monParc.chercherScooter("S004") == null) {
+            Modele mod4 = new Modele("Kymco", "125cc", "People S", "Asie");
+            Scooter s4 = new Scooter("S004", 1500.0, mod4);
+            monParc.ajouterScooter(s4);
+        }
     }
 
     private void initialiserClientsDeTest() {
@@ -41,7 +56,19 @@ public class Gestion {
 
         HabitudeClient hab4 = new HabitudeClient(2, 28);
         Client client4 = new Client("Sarah", "Croche", 4, "18112682", "sarah.croche@mail.com", hab4);
-        listeClients.add
+        listeClients.add(client4);
+
+        HabitudeClient hab5 = new HabitudeClient(6, 320.0);
+        Client client5 = new Client("Dupont", "Jean", 5, "0600000001", "jean.dupont@mail.com", hab5);
+        listeClients.add(client5);
+
+        HabitudeClient hab6 = new HabitudeClient(15, 2100.0);
+        Client client6 = new Client("Martin", "Sophie", 6, "0600000002", "sophie.martin@mail.com", hab6);
+        listeClients.add(client6);
+
+        HabitudeClient hab7 = new HabitudeClient(1, 50.0);
+        Client client7 = new Client("Bernard", "Lucas", 7, "0600000003", "lucas.bernard@mail.com", hab7);
+        listeClients.add(client7);
     }
 
     private void initialiserContrat() {
