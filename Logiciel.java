@@ -4,7 +4,7 @@ public class Logiciel {
     private Statistiques gestionnaire;
 
     public Logiciel() {
-        this.gestionnaire = new Statistiques();
+        this.gestionnaire = new Statistiques(); // on initalise le gestionnaire
     }
 
     public void afficherMenu() {
@@ -22,13 +22,13 @@ public class Logiciel {
     } 
 
     public void lancer(){
-        Scanner scanner = new Scanner(System.in);
-        int choix;
+        Scanner scanner = new Scanner(System.in); // ouvre la lecture du clavier
+        int choix; // créer une variable pour stocker le numéro tapé
         do{
-            afficherMenu();
-            choix = scanner.nextInt();
-            scanner.nextLine();
-            switch(choix){
+            afficherMenu(); // affiche les options à chaque tour de boucle
+            choix = scanner.nextInt(); // lit le nombre entré
+            scanner.nextLine(); // passe à la ligne suivante (pour éviter les bugs)
+            switch(choix){ // dépend du chiffre choisi par l'utilisateur
                 case 1:
                     System.out.print("Donner l'ID du scooter à louer :");
                     String idloc = scanner.nextLine();
