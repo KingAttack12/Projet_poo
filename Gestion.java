@@ -185,8 +185,8 @@ public class Gestion {
                 String idContrat = "CRT-" + listeContrats.size() + 1;
                 java.util.Date finPrevu = new java.util.Date (System.currentTimeMillis() + (1000+60+60+24));
                 Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu);
-                listeContrats.add(nouveauContrat);
-                c.getHabitude().incrementerLocations();
+                listeContrats.add(nouveauContrat); // ajoute à la liste des contrats
+                c.getHabitude().incrementerLocations(); // +1 locations pour l'habitude de ce client
                 System.out.println("\nLe contrat est n°"+ idContrat + " a été crée !");
                 System.out.println("\nLe scooter " + id_scooter + " a été loué et doit être retourner le : "+finPrevu);
             }else{
