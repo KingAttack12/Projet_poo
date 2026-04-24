@@ -185,7 +185,7 @@ public class Gestion {
                 s.louer(); // on marque le scooter comme loué
                 Tarification tarif = this.tarificationBase;
                 String idContrat = "CRT-" + listeContrats.size() + 1;
-                java.util.Date finPrevu = new java.util.Date (System.currentTimeMillis()+(604800000));
+                java.util.Date finPrevu = new java.util.Date (System.currentTimeMillis()+(604800000)); // correspond à une semaine en milisecondes (date de fin prévue)
                 Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu);
                 listeContrats.add(nouveauContrat); // ajoute à la liste des contrats
                 c.getHabitude().incrementerLocations(); // +1 locations pour l'habitude de ce client
