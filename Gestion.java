@@ -14,6 +14,7 @@ public class Gestion {
         this.tarificationBase = new Tarification(25.0);
         initialiserParc();
         initialiserClientsDeTest();
+        initialiserContrat();
     }
 
     private void initialiserParc() {
@@ -33,10 +34,28 @@ public class Gestion {
         HabitudeClient hab2 = new HabitudeClient(4, 450.0);
         Client client2 = new Client("Potter", "Harry", 2, "07777777777", "harry.potter@mail.com", hab2);
         listeClients.add(client2);
+
+        HabitudeClient hab3 = new HabitudeClient(0, 0);
+        Client client3 = new Client("Tonton", "Kim", 3, "01010101010", "attack.moi@mail.com", hab3);
+        listeClients.add(client3);
+
+        HabitudeClient hab4 = new HabitudeClient(2, 28);
+        Client client4 = new Client("Sarah", "Croche", 4, "18112682", "sarah.croche@mail.com", hab4);
+        listeClients.add
     }
 
-    private void InitaliserContrat(){
-        Contrat c1 = new Contrat(String , Client client, Scooter scooter, Tarification tarif, Date dateFinPrevue)
+    private void initialiserContrat() {
+        if (!listeClients.isEmpty()) {
+            Client client = listeClients.get(0);
+            Scooter s1 = monParc.chercherScooter("S001");
+            if (s1 != null && s1.isEstDisponible()) {
+                s1.louer();
+                String idContrat = "CRT-" + (listeContrats.size() + 1);
+                java.util.Date dateFinPrevue = new java.util.Date(System.currentTimeMillis() + 24L * 60 * 60 * 1000);
+                Contrat c1 = new Contrat(idContrat, client, s1, tarificationBase, dateFinPrevue);
+                listeContrats.add(c1);
+            }
+        }
     }
 
     // Point 5
