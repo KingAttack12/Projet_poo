@@ -127,8 +127,8 @@ public class Logiciel {
         
     }
 
-    public static void main(String[] args){
-        Logiciel appl = new Logiciel();
-        appl.lancer();
+    public static void main(String[] args){ // départ du programme
+        Logiciel appl = new Logiciel(); // créer l'application en mémoire
+        appl.lancer(); // démarrele logiciel
     }
 }
