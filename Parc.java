@@ -15,15 +15,15 @@ public class Parc {
     }
 
     public Scooter chercherScooter(String id) { // on reçoit l'identifiant à chercher 
-        for (Scooter s : listeScooters) {
-            if (s.getId().equals(id)) {
-                return s; // Scooter trouvé
+        for (Scooter s : listeScooters) { // on met une boucle pour chaque scooter de la liste
+            if (s.getId().equals(id)) { // si son id est identique à celui recherché
+                return s; // on arrête la recherche, on a trouvé le scooter et on le donne 
             }
         }
-        return null; // Scooter non trouvé
+        return null; // si à la fin de la boucle, on n'a trouvé aucun scooter, on renvoie une valeur nulle
     }
 
     public List<Scooter> getListeScooters() {
-        return listeScooters;
+        return listeScooters; // on renvoie les données de tous les scooters
     }
 }
