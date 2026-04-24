@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Contrat {
+public class Contrat { // permet d'obtenir les données du contrat
     private String idContrat;
     private Date dateDebut;
     private Date dateFinPrevue;
@@ -10,9 +10,9 @@ public class Contrat {
     private double penaliteParJour;
     
     // Les liaisons UML
-    private Client client;
-    private Scooter scooter;
-    private Tarification tarification;
+    private Client client; // vient de la classe client
+    private Scooter scooter; // vient de la classe scooter
+    private Tarification tarification; // vient de la classe tarification
 
     public Contrat(String idContrat, Client client, Scooter scooter, Tarification tarif, Date dateFinPrevue) {
         this.idContrat = idContrat;
@@ -20,7 +20,7 @@ public class Contrat {
         this.scooter = scooter;
         this.tarification = tarif;
         this.dateFinPrevue = dateFinPrevue;
-        this.dateDebut = new Date(); // Date du jour
+        this.dateDebut = new Date(); // Date du jour enregistrée
     }
 
     public double calculerPrixEstime() {
@@ -28,20 +28,21 @@ public class Contrat {
             return 0.0; 
         }
 
+        // on calcule la différence de temps en milisecondes
         long differenceEnMillisecondes = this.dateFinPrevue.getTime() - this.dateDebut.getTime();
 
-
+        // on convertit les milisecondes en jours
         int nombreDeJours = (int) (differenceEnMillisecondes / (1000 * 60 * 60 * 24));
 
         if (nombreDeJours == 0) {
             nombreDeJours = 1;
-        }
+        } // minimum un jour de facturé
 
-        return this.tarification.calculerTarifBase(nombreDeJours);
+        return this.tarification.calculerTarifBase(nombreDeJours); // on retourne les résultats des calculs
     }
 
     public void cloturerContrat(double kmAjoutes) {
-        this.dateFinReelle = new Date();
+        this.dateFinReelle = new Date(); // on note la date de retour
         this.montantTotal = calculerPrixEstime() + calculerMontantPenalite();
         this.scooter.retour(kmAjoutes); // On libère le scooter et on met à jour son compteur
     }
@@ -50,7 +51,7 @@ public class Contrat {
         return this.joursDeRetard * this.penaliteParJour;
     }
 
-    public String editerFacture() {
+    public String editerFacture() { // on fait un texte récapitulatif
         return "Facture pour le contrat " + idContrat + "\n- Montant : " + montantTotal + " euro" + "\nPour :" + client.getInfosClient() + "\nDate de fin réelle : " + dateFinReelle;
     }
     public Scooter getScooter(){
