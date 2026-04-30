@@ -8,7 +8,7 @@ public class Tarification {
     
     public void modifierPrixBase(double nouveauPrix) { // on reçoit un nouveau prix
         this.prixJournalierBase = nouveauPrix; // on remplace l'ancien prix par le nouveau prix
-        System.out.println("Le nouveau prix de base est de : " + this.prixJournalierBase + " euro"); // on l'affiche à l'écran
+        System.out.println(">> Nouveau tarif: " + this.prixJournalierBase + " €/jour");
     }
 
     // Méthode pour calculer le prix selon la durée (utilisée par le Contrat)

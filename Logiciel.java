@@ -4,63 +4,71 @@ public class Logiciel {
     private Statistiques gestionnaire;
 
     public Logiciel() {
-        this.gestionnaire = new Statistiques(); // on initalise le gestionnaire
+        this.gestionnaire = new Statistiques();
     }
 
     public void afficherMenu() {
-        System.out.println("\n----- SCOOT -----");
+        System.out.println("\n========== SCOOT ==========");
         System.out.println("1. Louer un scooter");
         System.out.println("2. Retour d'un scooter");
         System.out.println("3. État d'un scooter");
-        System.out.println("4. Affichage de l'état du parc de scooters");
+        System.out.println("4. Affichage de l'état du parc");
         System.out.println("5. Saisie du parc des scooters");
         System.out.println("6. Statistiques");
         System.out.println("7. Modifier le prix de base");
         System.out.println("8. Saisie de clients");
         System.out.println("9. Quitter le programme");
+        System.out.println("============================");
         System.out.print("Votre choix : ");
     } 
 
     public void lancer(){
-        Scanner scanner = new Scanner(System.in); // ouvre la lecture du clavier
-        int choix; // créer une variable pour stocker le numéro tapé
+        Scanner scanner = new Scanner(System.in);
+        int choix;
         do{
-            afficherMenu(); // affiche les options à chaque tour de boucle
-            choix = scanner.nextInt(); // lit le nombre entré
-            scanner.nextLine(); // passe à la ligne suivante (pour éviter les bugs)
-            switch(choix){ // dépend du chiffre choisi par l'utilisateur
+            afficherMenu();
+            choix = scanner.nextInt();
+            scanner.nextLine();
+            switch(choix){
                 case 1:
-                    System.out.print("Donner l'ID du scooter à louer (exemple : S001 ou S002...):");
+                    System.out.println("\n--- LOCATION ---");
+                    System.out.print("ID du scooter (ex: S001) : ");
                     String idloc = scanner.nextLine();
-                    System.out.print("Donner l'id du client (exemple : 1 ou 2...): ");
+                    System.out.print("ID du client : ");
                     int idcli = scanner.nextInt();
                     scanner.nextLine();
                     gestionnaire.traiterLocation(idloc, idcli);
+                    System.out.println(">> Location effectuée!");
                     break;
                 case 2:
-                    System.out.print("Donner l'ID du scooter à retourner : ");;
+                    System.out.println("\n--- RETOUR ---");
+                    System.out.print("ID du scooter : ");
                     String idRetour = scanner.nextLine();
-                    System.out.println("Combien de kilomètres a-t-il parcouru pendant la location ? :");
+                    System.out.print("Kilomètres parcourus : ");
                     double kmFaits = scanner.nextDouble();
                     scanner.nextLine();
                     gestionnaire.traiterRetour(idRetour, kmFaits);
+                    System.out.println(">> Retour enregistré!");
                     break;
                 case 3:
-                    System.out.print("Donner l'ID du scooter (exemple : S001 ou S002...):");
+                    System.out.println("\n--- ÉTAT DU SCOOTER ---");
+                    System.out.print("ID du scooter : ");
                     gestionnaire.afficherEtatScooter(scanner.nextLine());
                     break;
                 case 4:
+                    System.out.println("\n=== ÉTAT DU PARC ===");
                     gestionnaire.afficherParc();
                     break;
                 case 5:
-                    System.out.print("Combien de scooter voulez vous créer ? : ");
+                    System.out.println("\n--- CRÉATION SCOOTERS ---");
+                    System.out.print("Nombre de scooters : ");
                     int nb = scanner.nextInt();
-                    scanner.nextLine(); // consomme le retour à la ligne après l'entier
+                    scanner.nextLine();
                     for(int i=0; i<nb; i++){
-                        System.out.println("--- Création d'un nouveau scooter ---");
-                        System.out.print("\nID du scooter (exemple : S001 ou S002...): ");
+                        System.out.println("\nScooter " + (i+1) + "/" + nb + " :");
+                        System.out.print("ID (ex: S001) : ");
                         String id = scanner.nextLine();
-                        System.out.print("\nKilométrage de départ : ");
+                        System.out.print("Kilométrage : ");
                         double KM_init = scanner.nextDouble();
                         scanner.nextLine();
                         System.out.print("Modèle : ");
@@ -73,37 +81,40 @@ public class Logiciel {
                         String pays = scanner.nextLine();
                         gestionnaire.saisirParc2(id, KM_init, modele, moteur, marque, pays);
                     }
+                    System.out.println(">> " + nb + " scooter(s) créé(s)!");
                     break;
                 case 6:
-                    System.out.println("--------------- Statistiques -------------");
+                    System.out.println("\n=== STATISTIQUES ===");
                     Client meilleurClient = gestionnaire.TopClient(gestionnaire.getListeClients());
                     if (meilleurClient == null) {
-                        System.out.println("Aucun client disponible pour afficher des statistiques.");
+                        System.out.println("Aucun client disponible.");
                     } else {
                         System.out.println("Meilleur client : " + meilleurClient.getInfosClient());
-                        System.out.println("Dépense totale : " + meilleurClient.getHabitude().getTotalDepense() + "euro");
+                        System.out.println("Dépense totale : " + meilleurClient.getHabitude().getTotalDepense() + "€");
                     }
-                    System.out.println("-----------------");
+                    System.out.println("-------------------");
                     Double ChiffreAffaire = gestionnaire.calculerChiffreAffaireTotal(gestionnaire.getListeClients());
-                    System.out.println("Chiffre d'affaire global : " + ChiffreAffaire);
+                    System.out.println("Chiffre d'affaires : " + ChiffreAffaire + "€");
                     break;
                 case 9:
-                    System.out.println("Fermeture du programme !");
+                    System.out.println("\n=== AU REVOIR ===");
+                    System.out.println("Merci d'avoir utilisé SCOOT!");
                     break;
                 case 7:
-                    System.out.println("----- Modification tarif -----");
-                    System.out.print("Entrer le nouveau tarif : ");
+                    System.out.println("\n--- MODIFICATION TARIF ---");
+                    System.out.print("Nouveau tarif (€) : ");
                     double tarif = scanner.nextDouble();
                     scanner.nextLine();
                     gestionnaire.modifierPrixBase(tarif);
                     break;
                 case 8:
-                    System.out.print("Combien de client voulez vous rentrer ? : ");
+                    System.out.println("\n--- CRÉATION CLIENTS ---");
+                    System.out.print("Nombre de clients : ");
                     int cb = scanner.nextInt();
-                    scanner.nextLine(); // consomme le retour à la ligne après l'entier
+                    scanner.nextLine();
                     for(int i=0; i<cb; i++){
-                        System.out.println("--- Saisie du client n°"+(i+1)+" ---");
-                        System.out.print("\nID du client (exemple : 1 ou 2...): ");
+                        System.out.println("\nClient " + (i+1) + "/" + cb + " :");
+                        System.out.print("ID : ");
                         int idClient = scanner.nextInt();
                         scanner.nextLine();
                         System.out.print("Nom : ");
@@ -116,19 +127,21 @@ public class Logiciel {
                         String email = scanner.nextLine();
                         gestionnaire.saisirClient(nomClient, prenomClient, idClient, telephone, email);
                     }
+                    System.out.println(">> " + cb + " client(s) créé(s)!");
                     break;
                 default:
-                    System.out.println("Choix invalide, veuillez réessayer.");
+                    System.out.println(">> Choix invalide!");
                     break;
             
             }
-        }while(choix != 9); // recommence tant que l'utilisateur ne tappe pas 9
+        }while(choix != 9);
             scanner.close();
         
     }
 
-    public static void main(String[] args){ // départ du programme
-        Logiciel appl = new Logiciel(); // créer l'application en mémoire
-        appl.lancer(); // démarrele logiciel
+    public static void main(String[] args){
+        System.out.println("\n===== SCOOT - Gestion de Location =====");
+        Logiciel appl = new Logiciel();
+        appl.lancer();
     }
 }

@@ -89,13 +89,13 @@ public class Gestion {
 
     // Point 5
     public void saisirParc2(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
-        if(monParc.chercherScooter(id_scooter) == null){ // vérifie si l'id est libre
+        if(monParc.chercherScooter(id_scooter) == null){
             Modele mod = new Modele(nomModele, moteur, marque, pays);
             Scooter newScooter = new Scooter(id_scooter, km_init, mod);
             monParc.ajouterScooter(newScooter);
-            System.out.println("\nLe scooter " + id_scooter + " a été ajouté au parc avec succès !");
+            System.out.println(">> Scooter " + id_scooter + " ajouté au parc!");
         }else{
-            System.out.println("\nUn scooter avec l'ID " + id_scooter + " existe déjà dans le parc.");
+            System.out.println(">> Erreur: scooter " + id_scooter + " existe déjà!");
         }
     }
 
@@ -103,96 +103,100 @@ public class Gestion {
     public void saisirClient(String nom, String prenom, int id_client, String telephone, String e_mail) {
         for (Client client : listeClients) {
             if (client.getId_client() == id_client) {
-                System.out.println("\nUn client avec l'ID " + id_client + " existe déjà."); // stoppe si l'id client existe déjà 
+                System.out.println(">> Erreur: client " + id_client + " existe déjà!");
                 return;
             }
         }
-        HabitudeClient habitude = new HabitudeClient(0, 0.0); // un nouveau client représente zéro dépense
+        HabitudeClient habitude = new HabitudeClient(0, 0.0);
         Client nouveauClient = new Client(nom, prenom, id_client, telephone, e_mail, habitude);
         listeClients.add(nouveauClient);
-        System.out.println("\nLe client " + prenom + " " + nom + " a été ajouté avec succès !");
+        System.out.println(">> Client " + prenom + " " + nom + " ajouté!");
     }
     //Point 2
     public void traiterRetour(String id_Scooter, double kmParcourus) {
-        Scooter s = monParc.chercherScooter(id_Scooter); // cerche le scooter 
-        if (s != null && !s.isEstDisponible()) { // s'il existe déjà et qu'il est loué
-            s.retour(kmParcourus); // on le libère et on ajoute les kilomètres
+        Scooter s = monParc.chercherScooter(id_Scooter);
+        if (s != null && !s.isEstDisponible()) {
+            s.retour(kmParcourus);
             Contrat Contratactif = null;
-            for( Contrat c : listeContrats){ // on cherche le contrat correspondant
+            for( Contrat c : listeContrats){
                 if(c.getScooter().getId().equals(id_Scooter) && c.getDateFinReelle()==null){
                     Contratactif = c;
                     break;
                 }
             }
-            System.out.println("Le scooter " + id_Scooter + " a été retourné. Il est de nouveau disponible.");
-            System.out.println("Son nouveau kilométrage est de : " + s.getKilometrage() + " km.");
+            System.out.println(">> Scooter " + id_Scooter + " retourné. Kilométrage: " + s.getKilometrage() + " km");
             if(Contratactif != null){
-                System.out.println("-----Facture------");
-                Contratactif.cloturerContrat(kmParcourus); // on calcule le prix final
+                System.out.println("=== FACTURE ===");
+                Contratactif.cloturerContrat(kmParcourus);
                 Contratactif.getScooter();
-                System.out.println(Contratactif.editerFacture()); // on affiche la facture
-                System.out.println("-------------------");
+                System.out.println(Contratactif.editerFacture());
+                System.out.println("===============");
             }
         } else {
-            System.out.println("Ce scooter n'est pas en cours de location ou introuvable");
+            System.out.println(">> Erreur: scooter introuvable ou non loué");
         }
     }
 
     //Point 3
     public void afficherEtatScooter(String id_scooter) {
-        // on affiche le statut du parc (de la classe Parc)g
         Scooter s = monParc.chercherScooter(id_scooter);
         if(s != null){
             String etat = s.isEstDisponible() ? "Disponible" : "Indisponible";
-            System.out.println("\n--- Fiche technique du scooter "+ s.getId()+"---");
+            System.out.println("=== FICHE SCOOTER " + s.getId() + " ===");
             Modele m = s.getModele();
-            System.out.println("\nScooter ID : " + s.getId() + "\n- Nombre de km : "+ s.getKilometrage() +"\n- Modele : "+ m.getNom_modele() +"\n- Marque : "+ m.getNom_marque()+"\n- Motorisation : "+ m.getMotorisation() + "\n- Pays origine : " + m.getPaysOrigine() + "\nETAT : "+ etat);
+            System.out.println("Kilométrage : " + s.getKilometrage() + " km");
+            System.out.println("Modèle      : " + m.getNom_modele());
+            System.out.println("Marque      : " + m.getNom_marque());
+            System.out.println("Motorisation: " + m.getMotorisation());
+            System.out.println("Origine     : " + m.getPaysOrigine());
+            System.out.println("État        : " + etat);
+            System.out.println("==========================");
         }
         else {
-            System.out.println("Scooter introuvable");       
+            System.out.println(">> Erreur: scooter introuvable");
         }
     }
 
     //Point 4
     public void afficherParc() {
-        System.out.println("--- État du Parc --- ");
+        System.out.println("=== ÉTAT DU PARC ===");
         List<Scooter> liste = monParc.getListeScooters();
         int total = liste.size();
         int libre = 0;
         for (Scooter s : liste) {
             if(s.isEstDisponible()){
-                libre ++; // compte les scooters disponibles
+                libre ++;
             }
         }
-        System.out.print("Total : "+ total + "; Libre : "+ libre);
-        System.out.println("\n--- liste des véhicule ---");
+        System.out.println("Total: " + total + " | Disponibles: " + libre + " | Loués: " + (total - libre));
+        System.out.println("--------------------");
         for (Scooter s : monParc.getListeScooters()) {
-            String etat = s.isEstDisponible() ? "Dispo" : "Loué";
-            System.out.println("["+ etat + "] Scooter n° "+ s.getId()+"("+ s.getKilometrage() + "km )"); // créer une boucle pour savoir si le scooter est libre ou loué
+            String etat = s.isEstDisponible() ? "[DISPO]" : "[LOUÉ]";
+            System.out.println(etat + " " + s.getId() + " - " + s.getKilometrage() + " km");
         }
     }
 
     //Point 1
     public void traiterLocation (String id_scooter, int id_client){
-        Scooter s = monParc.chercherScooter(id_scooter); // on trouve le scooter
+        Scooter s = monParc.chercherScooter(id_scooter);
         Client c = null;
-        for(Client clientTempo : listeClients){ // on trouve le client par son id
+        for(Client clientTempo : listeClients){
             if(clientTempo.getId_client()== id_client){
                 c = clientTempo;
             }
         }
             if(s != null && s.isEstDisponible()){
-                s.louer(); // on marque le scooter comme loué
+                s.louer();
                 Tarification tarif = this.tarificationBase;
                 String idContrat = "CRT-" + listeContrats.size() + 1;
-                java.util.Date finPrevu = new Date (System.currentTimeMillis()+(11)); // correspond à une semaine en milisecondes (date de fin prévue)
+                java.util.Date finPrevu = new Date (System.currentTimeMillis()+(11));
                 Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu);
-                listeContrats.add(nouveauContrat); // ajoute à la liste des contrats
-                c.getHabitude().incrementerLocations(); // +1 locations pour l'habitude de ce client
-                System.out.println("\nLe contrat est n°"+ idContrat + " a été crée !");
-                System.out.println("\nLe scooter " + id_scooter + " a été loué et doit être retourner le : "+finPrevu);
+                listeContrats.add(nouveauContrat);
+                c.getHabitude().incrementerLocations();
+                System.out.println(">> Contrat " + idContrat + " créé!");
+                System.out.println(">> Scooter " + id_scooter + " loué jusqu'au: " + finPrevu);
             }else{
-                System.out.println("\nLe scooter est introuvable ou déja en location");
+                System.out.println(">> Erreur: scooter introuvable ou déjà loué");
             }
     }
 
@@ -208,8 +212,9 @@ public class Gestion {
     public void modifierPrixBase(double nouveauPrix) {
         if (nouveauPrix > 0) {
             this.tarificationBase.modifierPrixBase(nouveauPrix);
+            System.out.println(">> Nouveau tarif: " + nouveauPrix + "€/jour");
         } else {
-            System.out.println("Le nouveau tarif doit être supérieur à 0.");
+            System.out.println(">> Erreur: le tarif doit être positif");
         }
     }
 }
