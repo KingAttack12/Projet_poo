@@ -49,7 +49,7 @@ public class Contrat { // permet d'obtenir les données du contrat
         // Calcul des jours de retard
         double diff = this.dateFinReelle.getTime() - this.dateFinPrevue.getTime();
         this.joursDeRetard = (diff / (1000L * 60 * 60 * 24));
-        if (this.joursDeRetard > 0) this.joursDeRetard = 1;
+        if (this.joursDeRetard < 0) this.joursDeRetard = 0;
         this.penaliteParJour = 10.0;
         // Calcul du montant total
         this.montantTotal = calculerPrixEstime() + calculerMontantPenalite();
@@ -61,7 +61,7 @@ public class Contrat { // permet d'obtenir les données du contrat
     }
 
     public String editerFacture() { // on fait un texte récapitulatif
-        return "Facture pour le contrat " + idContrat + "\n- Montant : " + montantTotal + " euro" + "\nPour :" + client.getInfosClient() + "\nDate de fin réelle : " + dateFinReelle;
+        return "Facture pour le contrat " + idContrat + "\n- Montant : " + String.format("%.2f", montantTotal) + " euro" + "\nPour :" + client.getInfosClient() + "\nDate de fin réelle : " + dateFinReelle;
     }
     public Scooter getScooter(){
         return scooter;
