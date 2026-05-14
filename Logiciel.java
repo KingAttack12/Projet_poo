@@ -92,11 +92,11 @@ public class Logiciel {
                         System.out.println("Aucun client disponible.");
                     } else {
                         System.out.println("Meilleur client : " + meilleurClient.getInfosClient());
-                        System.out.println("Dépense totale : " + meilleurClient.getHabitude().getTotalDepense() + "€");
+                        System.out.println("Dépense totale : " + meilleurClient.getHabitude().getTotalDepense() + "euro");
                     }
                     System.out.println("-------------------");
                     Double ChiffreAffaire = gestionnaire.calculerChiffreAffaireTotal(gestionnaire.getListeClients());
-                    System.out.println("Chiffre d'affaires : " + ChiffreAffaire + "€");
+                    System.out.println("Chiffre d'affaires : " + ChiffreAffaire + "euro");
                     break;
                 case 9:
                     System.out.println("\n=== AU REVOIR ===");
@@ -104,7 +104,7 @@ public class Logiciel {
                     break;
                 case 7:
                     System.out.println("\n--- MODIFICATION TARIF ---");
-                    System.out.print("Nouveau tarif (€) : ");
+                    System.out.print("Nouveau tarif (euro) : ");
                     double tarif = scanner.nextDouble();
                     scanner.nextLine();
                     gestionnaire.modifierPrixBase(tarif);

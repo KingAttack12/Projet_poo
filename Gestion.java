@@ -72,21 +72,6 @@ public class Gestion {
         Client client7 = new Client("Bernard", "Lucas", 7, "0600000003", "lucas.bernard@mail.com", hab7);
         listeClients.add(client7);
     }
-
-    //private void initialiserContrat() {
-        //if (!listeClients.isEmpty()) {
-            //Client client = listeClients.get(0);
-            //Scooter s1 = monParc.chercherScooter("S001");
-            //if (s1 != null && s1.isEstDisponible()) {
-                //s1.louer();
-                //String idContrat = "CRT-" + (listeContrats.size() + 1);
-                //Date dateFinPrevue = new Date(System.currentTimeMillis() + (604800000));
-                //Contrat c1 = new Contrat(idContrat, client, s1, tarificationBase, dateFinPrevue);
-                //listeContrats.add(c1);
-            //}
-        //}
-    //}
-
     // Point 5
     public void saisirParc2(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
         if(monParc.chercherScooter(id_scooter) == null){
@@ -159,7 +144,6 @@ public class Gestion {
 
     //Point 4
     public void afficherParc() {
-        System.out.println("=== ÉTAT DU PARC ===");
         List<Scooter> liste = monParc.getListeScooters();
         int total = liste.size();
         int libre = 0;
@@ -212,7 +196,7 @@ public class Gestion {
     public void modifierPrixBase(double nouveauPrix) {
         if (nouveauPrix > 0) {
             this.tarificationBase.modifierPrixBase(nouveauPrix);
-            System.out.println(">> Nouveau tarif: " + nouveauPrix + "€/jour");
+            System.out.println(">> Nouveau tarif: " + nouveauPrix + "euro/jour");
         } else {
             System.out.println(">> Erreur: le tarif doit être positif");
         }

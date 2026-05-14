@@ -30,8 +30,8 @@ public class Contrat { // permet d'obtenir les données du contrat
         // on calcule la différence de temps en milisecondes
         long differenceEnMillisecondes = this.dateFinPrevue.getTime() - this.dateDebut.getTime();
 
-        // on convertit les milisecondes en jours
-        int nombreDeJours = (int) (differenceEnMillisecondes / (1000 * 60 * 60 * 24));
+        // on convertit les milisecondes en jours (arrondir vers le haut)
+        int nombreDeJours = (int) Math.ceil(differenceEnMillisecondes / (1000.0 * 60 * 60 * 24));
 
         if (nombreDeJours == 0) {
             nombreDeJours = 1;
