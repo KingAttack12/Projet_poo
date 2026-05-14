@@ -177,7 +177,7 @@ public class Gestion {
     }
 
     //Point 1
-    public void traiterLocation (String id_scooter, int id_client){
+    public void traiterLocation (String id_scooter, int id_client, int nombreJours){
         Scooter s = monParc.chercherScooter(id_scooter);
         Client c = null;
         for(Client clientTempo : listeClients){
@@ -189,12 +189,12 @@ public class Gestion {
                 s.louer();
                 Tarification tarif = this.tarificationBase;
                 String idContrat = "CRT-" + listeContrats.size() + 1;
-                java.util.Date finPrevu = new Date (System.currentTimeMillis()+(11));
+                java.util.Date finPrevu = new Date (System.currentTimeMillis()+(nombreJours * 86400000));
                 Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu);
                 listeContrats.add(nouveauContrat);
                 c.getHabitude().incrementerLocations();
                 System.out.println(">> Contrat " + idContrat + " créé!");
-                System.out.println(">> Scooter " + id_scooter + " loué jusqu'au: " + finPrevu);
+                System.out.println(">> Scooter " + id_scooter + " loué pour " + nombreJours + " jour(s) jusqu'au: " + finPrevu);
             }else{
                 System.out.println(">> Erreur: scooter introuvable ou déjà loué");
             }

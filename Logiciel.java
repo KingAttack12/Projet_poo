@@ -36,8 +36,10 @@ public class Logiciel {
                     String idloc = scanner.nextLine();
                     System.out.print("ID du client : ");
                     int idcli = scanner.nextInt();
+                    System.out.print("Durée de la location (en jours) : ");
+                    int nombreJours = scanner.nextInt();
                     scanner.nextLine();
-                    gestionnaire.traiterLocation(idloc, idcli);
+                    gestionnaire.traiterLocation(idloc, idcli, nombreJours);
                     System.out.println(">> Location effectuée!");
                     break;
                 case 2:
