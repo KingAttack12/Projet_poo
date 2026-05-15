@@ -73,7 +73,7 @@ public class Gestion {
         listeClients.add(client7);
     }
     // Point 5
-    public void saisirParc2(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
+    public void saisirParc(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
         if(monParc.chercherScooter(id_scooter) == null){
             Modele mod = new Modele(nomModele, moteur, marque, pays);
             Scooter newScooter = new Scooter(id_scooter, km_init, mod);

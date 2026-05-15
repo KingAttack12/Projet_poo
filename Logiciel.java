@@ -81,7 +81,7 @@ public class Logiciel {
                         String marque = scanner.nextLine();
                         System.out.print("Pays d'origine : ");
                         String pays = scanner.nextLine();
-                        gestionnaire.saisirParc2(id, KM_init, modele, moteur, marque, pays);
+                        gestionnaire.saisirParc(id, KM_init, modele, moteur, marque, pays);
                     }
                     System.out.println(">> " + nb + " scooter(s) créé(s)!");
                     break;
