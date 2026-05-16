@@ -25,7 +25,7 @@ public class Client { // donne les données personnelles du client
     public HabitudeClient getHabitude() { // permet d'accéder aux statistiques du client
         return habitude; // retourne les habitudes du client
     }
-
+    //(Pas utiliser)
     public void modifierContact(String tel, String email) { // permet de mettre à jour les différentes informations du contact
         this.telephone = tel; // remplace l'ancien numéro de téléphone
         this.e_mail = email; // remplace l'ancien email

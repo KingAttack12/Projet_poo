@@ -14,15 +14,14 @@ public class Gestion {
         this.listeClients = new ArrayList<>(); // on crée une liste de clients vide
         this.listeContrats = new ArrayList<>();// on crée une liste de contrats vide
         this.tarificationBase = new Tarification(25.0); // on fixe le prix de base
-        initialiserParc(); // on mets des scooters dans le parc à scooter
-        initialiserClientsDeTest(); // on crée les clients
-        //initialiserContrat(); // on crée une location
+        initialiserParc(); // on mets des scooters définis par défaut dans le parc à scooter
+        initialiserClientsDeTest(); // on ajoute des clients par défaut
     }
 
     private void initialiserParc() {
         if (monParc.chercherScooter("S001") == null) { // si le scooter S001 n'existe pas, alors on le crée
-            Modele mod = new Modele("Yamaha", "100ch", "Tmax", "Europe");
-            Scooter s1 = new Scooter("S001", 1500.5, mod);
+            Modele mod = new Modele("Yamaha", "100ch", "Tmax", "Europe");//création d'un nouveau modèle
+            Scooter s1 = new Scooter("S001", 1500.5, mod);//création d'un nouveau scooter
             monParc.ajouterScooter(s1); // on l'ajoute dans le parc
             
         }
@@ -44,9 +43,9 @@ public class Gestion {
     }
 
     private void initialiserClientsDeTest() {
-        HabitudeClient hab1 = new HabitudeClient(12, 1500.0);
-        Client client1 = new Client("Fisson", "Sylvain", 1, "012345678", "sylvain.fisson@mail.com", hab1);
-        listeClients.add(client1);
+        HabitudeClient hab1 = new HabitudeClient(12, 1500.0);//création d'une habitude client
+        Client client1 = new Client("Fisson", "Sylvain", 1, "012345678", "sylvain.fisson@mail.com", hab1);//création d'un client
+        listeClients.add(client1);//ajouter le client à la liste
 
         HabitudeClient hab2 = new HabitudeClient(4, 450.0);
         Client client2 = new Client("Potter", "Harry", 2, "07777777777", "harry.potter@mail.com", hab2);
@@ -72,49 +71,49 @@ public class Gestion {
         Client client7 = new Client("Bernard", "Lucas", 7, "0600000003", "lucas.bernard@mail.com", hab7);
         listeClients.add(client7);
     }
-    // Point 5
+    // Point 5 : saisir les scooters dans le parc
     public void saisirParc(String id_scooter, double km_init, String nomModele, String moteur, String marque, String pays){
-        if(monParc.chercherScooter(id_scooter) == null){
-            Modele mod = new Modele(nomModele, moteur, marque, pays);
-            Scooter newScooter = new Scooter(id_scooter, km_init, mod);
-            monParc.ajouterScooter(newScooter);
+        if(monParc.chercherScooter(id_scooter) == null){ //si le scooter n'existe pas déjà
+            Modele mod = new Modele(nomModele, moteur, marque, pays);//crée un modèle à partir du constructeur
+            Scooter newScooter = new Scooter(id_scooter, km_init, mod);//crée un scooter à partir du constructeur
+            monParc.ajouterScooter(newScooter);//ajouter le scooter au parc
             System.out.println(">> Scooter " + id_scooter + " ajouté au parc!");
-        }else{
+        }else{// sinon
             System.out.println(">> Erreur: scooter " + id_scooter + " existe déjà!");
         }
     }
 
-    // Point 9
+    // Point 9 : saisir de nouveau client
     public void saisirClient(String nom, String prenom, int id_client, String telephone, String e_mail) {
-        for (Client client : listeClients) {
-            if (client.getId_client() == id_client) {
-                System.out.println(">> Erreur: client " + id_client + " existe déjà!");
-                return;
+        for (Client client : listeClients) {//chercher dans la liste de client
+            if (client.getId_client() == id_client) {// si l'id du client saisi correspond déjà à un client existant
+                System.out.println(">> Erreur: client " + id_client + " existe déjà!");//message erreur
+                return;//retourne rien 
             }
-        }
-        HabitudeClient habitude = new HabitudeClient(0, 0.0);
-        Client nouveauClient = new Client(nom, prenom, id_client, telephone, e_mail, habitude);
-        listeClients.add(nouveauClient);
+        }//sinon
+        HabitudeClient habitude = new HabitudeClient(0, 0.0);// création d'une habitude par défaut
+        Client nouveauClient = new Client(nom, prenom, id_client, telephone, e_mail, habitude);// création du client en fonction de la saisi
+        listeClients.add(nouveauClient);// ajoute le client à la liste
         System.out.println(">> Client " + prenom + " " + nom + " ajouté!");
     }
-    //Point 2
+    //Point 2 : retourner le scooter et cloturer le contrat
     public void traiterRetour(String id_Scooter, double kmParcourus) {
-        Scooter s = monParc.chercherScooter(id_Scooter);
-        if (s != null && !s.isEstDisponible()) {
-            s.retour(kmParcourus);
-            Contrat Contratactif = null;
-            for( Contrat c : listeContrats){
-                if(c.getScooter().getId().equals(id_Scooter) && c.getDateFinReelle()==null){
-                    Contratactif = c;
+        Scooter s = monParc.chercherScooter(id_Scooter); // recuperer le scooter en fonction de son ID
+        if (s != null && !s.isEstDisponible()) {// si le scooter existe et il est occupé
+            s.retour(kmParcourus);// enclancher le retour et incrémenter les km parcourus
+            Contrat Contratactif = null; //initialiser le contrat à null
+            for( Contrat c : listeContrats){// chercher dans les contrats en cours
+                if(c.getScooter().getId().equals(id_Scooter) && c.getDateFinReelle()==null){//si l'ID scooter du contrat est égal au scooter du parc et qu'im n'y a pas de date de fin réel (contrat en cours)
+                    Contratactif = c;//mettre le contrat dans la variable contratactif
                     break;
                 }
             }
             System.out.println(">> Scooter " + id_Scooter + " retourné. Kilométrage: " + s.getKilometrage() + " km");
-            if(Contratactif != null){
-                System.out.println("=== FACTURE ===");
-                Contratactif.cloturerContrat(kmParcourus);
-                Contratactif.getScooter();
-                System.out.println(Contratactif.editerFacture());
+            if(Contratactif != null){// verifier si le contrat est pas vide
+                System.out.println("=== FACTURE ===");// mise en place de la facture
+                Contratactif.cloturerContrat(kmParcourus);// calculer le prix final 
+                Contratactif.getScooter();//recuperer les données du scooter
+                System.out.println(Contratactif.editerFacture());// mettre en place la facture
                 System.out.println("===============");
             }
         } else {
@@ -122,13 +121,13 @@ public class Gestion {
         }
     }
 
-    //Point 3
+    //Point 3 : afficher l'état et les informations d'un scooter en particulier
     public void afficherEtatScooter(String id_scooter) {
-        Scooter s = monParc.chercherScooter(id_scooter);
-        if(s != null){
-            String etat = s.isEstDisponible() ? "Disponible" : "Indisponible";
+        Scooter s = monParc.chercherScooter(id_scooter);// recupéré le scooter du parc grâce à son ID
+        if(s != null){ // si le scooter existe
+            String etat = s.isEstDisponible() ? "Disponible" : "Indisponible"; // si isEstDisponible() return true : l'etat est disponible sinon Indisponible
             System.out.println("=== FICHE SCOOTER " + s.getId() + " ===");
-            Modele m = s.getModele();
+            Modele m = s.getModele();// recupérer le modèle du scooter en question
             System.out.println("Kilométrage : " + s.getKilometrage() + " km");
             System.out.println("Modèle      : " + m.getNom_modele());
             System.out.println("Marque      : " + m.getNom_marque());
@@ -142,62 +141,64 @@ public class Gestion {
         }
     }
 
-    //Point 4
+    //Point 4 : afficher l'état de tous les scooters du parc
     public void afficherParc() {
-        List<Scooter> liste = monParc.getListeScooters();
-        int total = liste.size();
-        int libre = 0;
-        for (Scooter s : liste) {
-            if(s.isEstDisponible()){
-                libre ++;
+        List<Scooter> liste = monParc.getListeScooters(); // récupérer la liste des scooters du parc
+        int total = liste.size(); // calculer le nombre total de scooters dans la liste
+        int libre = 0; // initialiser le compteur de scooters disponibles
+        for (Scooter s : liste) { // parcourir la liste
+            if(s.isEstDisponible()){ // si le scooter est disponible
+                libre ++; // incrémenter le compteur
             }
         }
-        System.out.println("Total: " + total + " | Disponibles: " + libre + " | Loués: " + (total - libre));
+        System.out.println("Total: " + total + " | Disponibles: " + libre + " | Loués: " + (total - libre)); // afficher la disponiblilité
         System.out.println("--------------------");
-        for (Scooter s : monParc.getListeScooters()) {
-            String etat = s.isEstDisponible() ? "[DISPO]" : "[LOUÉ]";
-            System.out.println(etat + " " + s.getId() + " - " + s.getKilometrage() + " km");
+        for (Scooter s : monParc.getListeScooters()) { // recupère tous les scooter du parc
+            String etat = s.isEstDisponible() ? "[DISPO]" : "[LOUÉ]"; // déterminer l'état de chaque scooter du parc
+            System.out.println(etat + " " + s.getId() + " - " + s.getKilometrage() + " km"); // afficher les informations de chaque scooter du parc
         }
     }
 
-    //Point 1
+    //Point 1 : créer une nouvelle location de scooter
     public void traiterLocation (String id_scooter, int id_client, int nombreJours){
-        Scooter s = monParc.chercherScooter(id_scooter);
-        Client c = null;
-        for(Client clientTempo : listeClients){
-            if(clientTempo.getId_client()== id_client){
-                c = clientTempo;
+        Scooter s = monParc.chercherScooter(id_scooter); // récupérer le scooter en fonction de son ID
+        Client c = null; // initialiser le client à null
+        for(Client clientTempo : listeClients){ // chercher le client dans la liste
+            if(clientTempo.getId_client()== id_client){ // si l'ID du client correspond
+                c = clientTempo; // assigner le client trouvé
             }
         }
-            if(s != null && s.isEstDisponible()){
-                s.louer();
-                Tarification tarif = this.tarificationBase;
-                String idContrat = "CRT-" + listeContrats.size() + 1;
-                java.util.Date finPrevu = new Date (System.currentTimeMillis()+(nombreJours * 86400000));
-                Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu);
-                listeContrats.add(nouveauContrat);
-                c.getHabitude().incrementerLocations();
+            if(s != null && s.isEstDisponible()){ // si le scooter existe et est disponible
+                s.louer(); // marquer le scooter comme loué
+                Tarification tarif = this.tarificationBase; // appliquer le tarif de base
+                String idContrat = "CRT-" + listeContrats.size() + 1; // générer un ID de contrat unique
+                java.util.Date finPrevu = new Date (System.currentTimeMillis()+(nombreJours * 86400000)); // calculer la date de fin prévue : nombre de jours de la location * nombre de seconde dans 1j
+                Contrat nouveauContrat = new Contrat(idContrat, c, s, tarif, finPrevu); // créer le contrat
+                listeContrats.add(nouveauContrat); // ajouter le contrat à la liste contrat
+                c.getHabitude().incrementerLocations(); // mettre à jour les habitudes du client
                 System.out.println(">> Contrat " + idContrat + " créé!");
                 System.out.println(">> Scooter " + id_scooter + " loué pour " + nombreJours + " jour(s) jusqu'au: " + finPrevu);
-            }else{
+            }else{ // sinon
                 System.out.println(">> Erreur: scooter introuvable ou déjà loué");
             }
     }
 
+    // retourner le parc de scooters
     public Parc getMonParc() {
         return monParc;
     }
 
+    // retourner la liste de clients
     public List<Client> getListeClients() {
         return listeClients;
     }
 
-    // Point 8
+    // Point 8 : modifier le prix de base de la tarification journalière
     public void modifierPrixBase(double nouveauPrix) {
-        if (nouveauPrix > 0) {
-            this.tarificationBase.modifierPrixBase(nouveauPrix);
+        if (nouveauPrix > 0) { // vérifier que le prix est positif
+            this.tarificationBase.modifierPrixBase(nouveauPrix); // appliquer le nouveau tarif
             System.out.println(">> Nouveau tarif: " + nouveauPrix + "euro/jour");
-        } else {
+        } else { // sinon
             System.out.println(">> Erreur: le tarif doit être positif");
         }
     }
